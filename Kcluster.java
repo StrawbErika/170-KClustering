@@ -19,25 +19,21 @@ public class Kcluster {
         this.trainingData = new ArrayList<Vectors>();
     }
 
-    // public void getC(){
-    //   int one = 0;
-    //   int zero = 0;
-    //   for(int i = 0; i < k; i++){
-    //     if(answers.get(i).c == 1){
-    //       one++;
-    //     }
-    //     else{
-    //       zero++;
-    //     }
-    //   }
-    //   if(one > zero){
-    //     x.c = 1;
-    //   }
-    //   else{
-    //     x.c = 0;
-    //   }
-    // }
-    //
+    public void updateCentroids(){
+
+    }
+
+    public void averageTwoDistance(Centroids c){
+        Double x = 0.0;
+        Double y = 0.0;
+        for(int j = 0; j < c.vectors.size(); j++){
+            Vectors cNew = c.vectors.get(j);
+            x = cNew.x + x;
+            y = cNew.y + y;
+        }
+    }
+
+
     public void getKcluster(){
       Double distance = 0.0;
       int i = 0;

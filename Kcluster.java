@@ -1,3 +1,11 @@
+// procedure:
+// 1.initialize k centroids (randomly)
+// 2. while(currCentroids != prevCentroids){
+//   findDistance of trainingData to prevCentroids
+//   take the k/2 nearest points and assign it to currCentroids
+//   average the points of each currentCentroids (x+x+x+x...) (y+y+y+y..)
+//   updateCentroids with the average of the points
+// }
 import java.io.*;
 import java.util.*;
 import java.lang.Math.*;
@@ -29,6 +37,7 @@ public class Kcluster {
         updateCentroids();
       }
     }
+
     public Boolean comparePrevCurrent(){
       Boolean change = false;
       if(isTwo){
@@ -42,13 +51,14 @@ public class Kcluster {
       }
       return change;
     }
+
     public void updateCentroids(){
       if(isTwo){
+        for(int j=0; j < prevCentroids.size(); j++){
+          prevCentroids.get(j).print();
+        }
         for(int j = 0; j < currentCentroids.size(); j++){
           averageTwoDistance(currentCentroids.get(j));
-        }
-        for(int j=0; j < currentCentroids.size(); j++){
-            currentCentroids.get(j).print();
         }
       }else{
 
@@ -102,6 +112,7 @@ public class Kcluster {
               }
           }
         }
+        initializeDuplicate();
     }
 
     public void initializeDuplicate(){

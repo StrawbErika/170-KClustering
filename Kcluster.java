@@ -31,10 +31,13 @@ public class Kcluster {
 
     public void findFinalCentroids(){
       initializeCentroids();
-      while(comparePrevCurrent() == true){
+      int i = 0;
+      while(i!=1){
+        System.out.println(i+" *************************************************************************************");
         getAllDistance();
         getKcluster();
         updateCentroids();
+        i++;
       }
     }
 
@@ -95,24 +98,31 @@ public class Kcluster {
     public void getKcluster(){
       Double distance = 0.0;
       int i = 0;
-      while(i!=min){
-          for(int j=0; j < currentCentroids.size(); j++){
-              Vectors n = getNearest(j);
-              if(i == 0){
-                  currentCentroids.get(j).vectors.add(n);
-                  trainingDataDuplicate.remove(n);
-                  i++;
-              }
-              else {
-                  if(!currentCentroids.get(j).vectors.contains(n)){
-                      currentCentroids.get(j).vectors.add(n);
-                      trainingDataDuplicate.remove(n);
-                      i++;
-                  }
-              }
-          }
+      for(int j=0; j < currentCentroids.size(); j++){
+        getKnearest(currentCentroids.get(j), j);
+      }
+      initializeDuplicate();
+    }
+    public void getKnearest(Centroids c, int j){
+      System.out.println("Getting " +min +" Nearest .............................................");
+      for(int i = 0; i < min; i++){
+        Vectors n = getNearest(j);
+        if(i == 0){
+            c.vectors.add(n);
+            trainingDataDuplicate.remove(n);
         }
-        initializeDuplicate();
+        else {
+            if(!c.vectors.contains(n)){
+                c.vectors.add(n);
+                trainingDataDuplicate.remove(n);
+            }
+        }
+      }
+      System.out.println("Got Nearest .............................................");
+      for(int x=0; x < currentCentroids.size(); x++){
+        System.out.println("Centroid .............................................");
+        currentCentroids.get(x).print();
+      }
     }
 
     public void initializeDuplicate(){
@@ -148,11 +158,17 @@ public class Kcluster {
 
     public void getAllDistance(){
       if(isTwo){
+        System.out.println("Computing Distance.......................................");
         for(int i = 0; i < trainingData.size(); i++){
             for(int j = 0; j < currentCentroids.size(); j++){
                 computeDistance(trainingData.get(i), currentCentroids.get(j));
             }
         }
+        System.out.println("These are the distances..................................");
+        for(int i = 0; i < trainingData.size(); i++){
+          trainingData.get(i).print();
+        }
+
       }
       else{
         for(int i = 0; i < trainingData.size(); i++){
@@ -243,7 +259,7 @@ public class Kcluster {
                   in++;
                 }
             }
-            min = trainingData.size();
+            min = trainingData.size()/2;
             // System.out.println("hoi");
             // for(int j = 0 ; j < trainingData.size(); j++){
             //     trainingData.get(j).print();

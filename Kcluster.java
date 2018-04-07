@@ -4,7 +4,8 @@ import java.lang.Math.*;
 
 public class Kcluster {
 
-    public ArrayList<Centroids> centroids;
+    public ArrayList<Centroids> currentCentroids;
+    public ArrayList<Centroids> prevCentroids;
     public ArrayList<Vectors> trainingData;
     public ArrayList<Vectors> trainingDataDuplicate;
     public Integer k;
@@ -15,11 +16,43 @@ public class Kcluster {
         this.isTwo = true;
         this.k = 0;
         this.min = 0;
-        this.centroids = new ArrayList<Centroids>();
+        this.currentCentroids = new ArrayList<Centroids>();
+        this.prevCentroids = new ArrayList<Centroids>();
         this.trainingData = new ArrayList<Vectors>();
     }
 
+    public void findFinalCentroids(){
+      initializeCentroids();
+      while(comparePrevCurrent() == true){
+        getAllDistance();
+        getKcluster();
+        updateCentroids();
+      }
+    }
+    public Boolean comparePrevCurrent(){
+      Boolean change = false;
+      if(isTwo){
+        for(int j = 0; j < currentCentroids.size(); j++){
+          for(int index = 0; index < prevCentroids.size(); index++){
+            if((currentCentroids.get(j).x!=prevCentroids.get(index).x) && (currentCentroids.get(j).y!=prevCentroids.get(index).y)){
+              change = true;
+            }
+          }
+        }
+      }
+      return change;
+    }
     public void updateCentroids(){
+      if(isTwo){
+        for(int j = 0; j < currentCentroids.size(); j++){
+          averageTwoDistance(currentCentroids.get(j));
+        }
+        for(int j=0; j < currentCentroids.size(); j++){
+            currentCentroids.get(j).print();
+        }
+      }else{
+
+      }
 
     }
 
@@ -31,31 +64,43 @@ public class Kcluster {
             x = cNew.x + x;
             y = cNew.y + y;
         }
+        c.x = x/c.vectors.size();
+        c.y = y/c.vectors.size();
     }
+
+    // public void averageMoreDistance(Centroids c){
+    //   // vectors.list
+    //   //currentCentroids.vectors
+    //
+    //   //need to add all first index, second index third etc
+    //   for(int j = 0; j < c.vectors.size(); j++){
+    //     Vectors cNew = c.vectors.get(j);
+    //     for(int index = 0; index < cNew.list.size(); index++){
+    //       Double x = cNew.list.get(i);
+    //   }
+    //
+    // }
 
 
     public void getKcluster(){
       Double distance = 0.0;
       int i = 0;
       while(i!=min){
-          for(int j=0; j < centroids.size(); j++){
+          for(int j=0; j < currentCentroids.size(); j++){
               Vectors n = getNearest(j);
               if(i == 0){
-                  centroids.get(j).vectors.add(n);
+                  currentCentroids.get(j).vectors.add(n);
                   trainingDataDuplicate.remove(n);
                   i++;
               }
               else {
-                  if(!centroids.get(j).vectors.contains(n)){
-                      centroids.get(j).vectors.add(n);
+                  if(!currentCentroids.get(j).vectors.contains(n)){
+                      currentCentroids.get(j).vectors.add(n);
                       trainingDataDuplicate.remove(n);
                       i++;
                   }
               }
           }
-        }
-        for(int j=0; j < centroids.size(); j++){
-            centroids.get(j).print();
         }
     }
 
@@ -93,15 +138,15 @@ public class Kcluster {
     public void getAllDistance(){
       if(isTwo){
         for(int i = 0; i < trainingData.size(); i++){
-            for(int j = 0; j < centroids.size(); j++){
-                computeDistance(trainingData.get(i), centroids.get(j));
+            for(int j = 0; j < currentCentroids.size(); j++){
+                computeDistance(trainingData.get(i), currentCentroids.get(j));
             }
         }
       }
       else{
         for(int i = 0; i < trainingData.size(); i++){
-            for(int j = 0; j < centroids.size(); j++){
-                computeMoreDistance(trainingData.get(i), centroids.get(j));
+            for(int j = 0; j < currentCentroids.size(); j++){
+                computeMoreDistance(trainingData.get(i), currentCentroids.get(j));
             }
         }
       }
@@ -113,18 +158,18 @@ public class Kcluster {
 // 2 clusters too
 // each point has a distance to 1 cluster so ArrayList<Double>
 
-    public void computeDistance(Vectors training, Centroids centroids){
-      Double squareX = (centroids.x - training.x) * (centroids.x - training.x);
-      Double squareY = (centroids.y - training.y) * (centroids.y - training.y);
+    public void computeDistance(Vectors training, Centroids currentCentroids){
+      Double squareX = (currentCentroids.x - training.x) * (currentCentroids.x - training.x);
+      Double squareY = (currentCentroids.y - training.y) * (currentCentroids.y - training.y);
       Double d = Math.sqrt(squareX + squareY);
       training.distance.add(d);
     }
 
-    public void computeMoreDistance(Vectors training, Centroids centroids){ //b is training data
+    public void computeMoreDistance(Vectors training, Centroids currentCentroids){ //b is training data
         Double d = 0.0;
         for(int i = 0; i < training.list.size(); i+=2){
-          Double squareOne = (centroids.list.get(i) - training.list.get(i)) * (centroids.list.get(i) - training.list.get(i));
-          Double squareTwo = (centroids.list.get(i+1) - training.list.get(i+1)) * (centroids.list.get(i+1) - training.list.get(i+1));
+          Double squareOne = (currentCentroids.list.get(i) - training.list.get(i)) * (currentCentroids.list.get(i) - training.list.get(i));
+          Double squareTwo = (currentCentroids.list.get(i+1) - training.list.get(i+1)) * (currentCentroids.list.get(i+1) - training.list.get(i+1));
           d = Math.sqrt(squareOne + squareTwo) + d;
         }
         training.distance.add(d);
@@ -137,13 +182,17 @@ public class Kcluster {
         //         Double x = rand.nextDouble(50);
         //         Double y = rand.nextDouble(50);
         //         Vectors centroid = new Centroids(x,y);
-        //         centroids.add(centroid);
+        //         currentCentroids.add(centroid);
         //     }
         // }
         Centroids first = new Centroids(1.0,4.0);
         Centroids second = new Centroids(4.0,4.0);
-        centroids.add(first);
-        centroids.add(second);
+        currentCentroids.add(first);
+        currentCentroids.add(second);
+        Centroids prevfirst = new Centroids(999999.0,999999.0);
+        Centroids prevSecond = new Centroids(999999.0,999999.0);
+        prevCentroids.add(first);
+        prevCentroids.add(second);
     }
     //
     // public void updateCentroids(){

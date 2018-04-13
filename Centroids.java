@@ -22,8 +22,9 @@ public class Centroids {
   }
 
   public void print(){
-    System.out.println(this.x + " " + this.y);
+    System.out.println("*********************************" +this.x + " " + this.y +"*********************************");
     System.out.println("Vectors .............................................");
+    System.out.println(this.vectors.size());
     for(int i = 0; i < this.vectors.size(); i++){
         vectors.get(i).print();
     }

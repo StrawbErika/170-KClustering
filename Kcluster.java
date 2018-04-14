@@ -6,6 +6,7 @@
 //   average the points of each currentCentroids (x+x+x+x...) (y+y+y+y..)
 //   updateCentroids with the average of the points
 // }
+
 import java.io.*;
 import java.util.*;
 import java.lang.Math.*;
@@ -32,7 +33,7 @@ public class Kcluster {
     public void findFinalCentroids(){
       initializeCentroids();
       int i = 0;
-      while(i!=3){
+      while(comparePrevCurrent()){
         saveFile(i);
         updatePrevCentroids();
         getAllDistance();
@@ -46,10 +47,20 @@ public class Kcluster {
       Boolean change = false;
       if(isTwo){
         for(int j = 0; j < currentCentroids.size(); j++){
+          Boolean isInPrev = false;
           for(int index = 0; index < prevCentroids.size(); index++){
-            if((currentCentroids.get(j).x!=prevCentroids.get(index).x) && (currentCentroids.get(j).y!=prevCentroids.get(index).y)){
-              change = true;
+            System.out.println("CURRENT");
+            currentCentroids.get(j).print();
+            System.out.println("PREV");
+            prevCentroids.get(j).print();
+            if((currentCentroids.get(j).x==prevCentroids.get(index).x) || (currentCentroids.get(j).y==prevCentroids.get(index).y)){
+              isInPrev = true;
             }
+          }
+          System.out.println("");
+
+          if(!isInPrev){
+            change = true;
           }
         }
       }
@@ -59,7 +70,7 @@ public class Kcluster {
     public void updatePrevCentroids(){
       prevCentroids.clear();
       for(int j=0; j < currentCentroids.size(); j++){
-        prevCentroids.add(currentCentroids.get(j));
+        prevCentroids.add(j, new Centroids(currentCentroids.get(j)));
       }
     }
 
@@ -87,31 +98,16 @@ public class Kcluster {
         c.y = y/c.vectors.size();
     }
 
-    // public void averageMoreDistance(Centroids c){
-    //   // vectors.list
-    //   //currentCentroids.vectors
-    //
-    //   //need to add all first index, second index third etc
-    //   for(int j = 0; j < c.vectors.size(); j++){
-    //     Vectors cNew = c.vectors.get(j);
-    //     for(int index = 0; index < cNew.list.size(); index++){
-    //       Double x = cNew.list.get(i);
-    //   }
-    //
-    // }
-
 
     public void getKcluster(){
       Double distance = 0.0;
       int i = 0;
-      // System.out.println("currentCentroids size: " + currentCentroids.size());
       for(int j=0; j < currentCentroids.size(); j++){
         getKnearest(currentCentroids.get(j), j);
       }
     }
 
     public void getKnearest(Centroids c, int j){
-      // System.out.println("Getting " +min +" Nearest for"+c.x+" "+c.y+ " .............................................");
       for(int i = 0; i < min; i++){
         Vectors n = getNearest(j);
         if(i == 0){
@@ -126,6 +122,7 @@ public class Kcluster {
         }
       }
     }
+
     public void clearVectorList(){
       for(int j = 0; j < currentCentroids.size(); j++){
         currentCentroids.get(j).vectors.clear();
@@ -176,10 +173,6 @@ public class Kcluster {
                 computeDistance(trainingData.get(i), currentCentroids.get(j));
             }
         }
-        // System.out.println("These are the distances..................................");
-        // for(int i = 0; i < trainingData.size(); i++){
-          // trainingData.get(i).print();
-        // }
 
       }
       else{

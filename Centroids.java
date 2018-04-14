@@ -16,24 +16,36 @@ public class Centroids {
     this.y = y;
     this.vectors =  new ArrayList<Vectors>();
   }
+
   public Centroids(ArrayList<Double> list){
     this.list = list;
     this.vectors =  new ArrayList<Vectors>();
   }
 
-  public void print(){
-    System.out.println("*********************************" +this.x + " " + this.y +"*********************************");
-    System.out.println("Vectors .............................................");
-    System.out.println(this.vectors.size());
-    for(int i = 0; i < this.vectors.size(); i++){
-        vectors.get(i).print();
+  public Centroids(Centroids c){
+    this.x = c.x;
+    this.y = c.y;
+    for(int i = 0; i < c.vectors.size(); i++){
+      this.vectors.add(c.vectors.get(i));
     }
   }
+
+  public void print(){
+    System.out.println(this.x + " " + this.y );
+    // System.out.println("Vectors .............................................");
+    // System.out.println(this.vectors.size());
+    // for(int i = 0; i < this.vectors.size(); i++){
+        // vectors.get(i).print();
+    // }
+  }
+
   public void printMore(){
     for(int i = 0; i < this.list.size(); i++){
       System.out.print(this.list.get(i) + " ");
     }
   }
+
+
 
 
 }

@@ -33,11 +33,11 @@ public class Kcluster {
       initializeCentroids();
       int i = 0;
       while(i!=3){
-        // System.out.println(i+" *************************************************************************************");
-        // System.out.println("");
+        saveFile(i);
+        updatePrevCentroids();
         getAllDistance();
         getKcluster();
-        updateCentroids(i);
+        updateCentroids();
         i++;
       }
     }
@@ -59,26 +59,20 @@ public class Kcluster {
     public void updatePrevCentroids(){
       prevCentroids.clear();
       for(int j=0; j < currentCentroids.size(); j++){
-        currentCentroids.get(j).print();
-        prevCentroids.add(j, currentCentroids.get(j));
+        prevCentroids.add(currentCentroids.get(j));
       }
     }
 
-    public void updateCentroids(int x){
-      System.out.println("UPDATING CENTROIDS...........");
-      System.out.println("");
+    public void updateCentroids(){
       if(isTwo){
         for(int j = 0; j < currentCentroids.size(); j++){
           averageTwoDistance(currentCentroids.get(j));
-          currentCentroids.get(j).print();
         }
-        saveFile(x);
-        updatePrevCentroids();
-        clearVectorList();
-        initializeDuplicate();
       }else{
 
       }
+      clearVectorList();
+      initializeDuplicate();
     }
 
     public void averageTwoDistance(Centroids c){
@@ -230,8 +224,8 @@ public class Kcluster {
         //         currentCentroids.add(centroid);
         //     }
         // }
-        Centroids first = new Centroids(1.0,4.0);
-        Centroids second = new Centroids(4.0,4.0);
+        Centroids first = new Centroids(3.0,2.4);
+        Centroids second = new Centroids(1.3,4.3);
         currentCentroids.add(first);
         currentCentroids.add(second);
         Centroids prevfirst = new Centroids(999999.0,999999.0);
@@ -291,8 +285,6 @@ public class Kcluster {
     public void saveFile(int x) { //writes file
         String filename = "output.txt";
         try {
-          // FileWriter fw = new FileWriter(filename,true); //the true will append the new data
-
             BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true));
             writer.write(x+"\n");
             if(isTwo){

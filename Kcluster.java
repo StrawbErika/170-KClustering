@@ -68,12 +68,12 @@ public class Kcluster {
       System.out.println("UPDATING CENTROIDS...........");
       System.out.println("");
       if(isTwo){
-        updatePrevCentroids();
         for(int j = 0; j < currentCentroids.size(); j++){
           averageTwoDistance(currentCentroids.get(j));
           currentCentroids.get(j).print();
         }
         saveFile(x);
+        updatePrevCentroids();
         clearVectorList();
         initializeDuplicate();
       }else{
@@ -236,8 +236,8 @@ public class Kcluster {
         currentCentroids.add(second);
         Centroids prevfirst = new Centroids(999999.0,999999.0);
         Centroids prevSecond = new Centroids(999999.0,999999.0);
-        prevCentroids.add(first);
-        prevCentroids.add(second);
+        prevCentroids.add(prevfirst);
+        prevCentroids.add(prevSecond);
     }
     //
     // public void updateCentroids(){

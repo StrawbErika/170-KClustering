@@ -48,15 +48,17 @@ public class Kcluster {
       if(isTwo){
         for(int j = 0; j < currentCentroids.size(); j++){
           Boolean isInPrev = false;
+          System.out.println("CURRENT");
+          currentCentroids.get(j).print();
           for(int index = 0; index < prevCentroids.size(); index++){
-            System.out.println("CURRENT");
-            currentCentroids.get(j).print();
             System.out.println("PREV");
             prevCentroids.get(j).print();
-            if((currentCentroids.get(j).x==prevCentroids.get(index).x) || (currentCentroids.get(j).y==prevCentroids.get(index).y)){
+            System.out.println("");
+            if((currentCentroids.get(j).x.equals(prevCentroids.get(index).x)) || (currentCentroids.get(j).y.equals(prevCentroids.get(index).y))){
               isInPrev = true;
             }
           }
+          System.out.println("");
           System.out.println("");
 
           if(!isInPrev){
@@ -68,7 +70,6 @@ public class Kcluster {
     }
 
     public void updatePrevCentroids(){
-      prevCentroids.clear();
       for(int j=0; j < currentCentroids.size(); j++){
         prevCentroids.add(j, new Centroids(currentCentroids.get(j)));
       }
@@ -186,10 +187,6 @@ public class Kcluster {
     }
 
 
-// compute distance of k = 2
-// 2 clusters too
-// each point has a distance to 1 cluster so ArrayList<Double>
-
     public void computeDistance(Vectors training, Centroids currentCentroids){
       Double squareX = (currentCentroids.x - training.x) * (currentCentroids.x - training.x);
       Double squareY = (currentCentroids.y - training.y) * (currentCentroids.y - training.y);
@@ -217,7 +214,7 @@ public class Kcluster {
         //         currentCentroids.add(centroid);
         //     }
         // }
-        Centroids first = new Centroids(3.0,2.4);
+        Centroids first = new Centroids(13.0,2.4);
         Centroids second = new Centroids(1.3,4.3);
         currentCentroids.add(first);
         currentCentroids.add(second);
@@ -226,11 +223,6 @@ public class Kcluster {
         prevCentroids.add(prevfirst);
         prevCentroids.add(prevSecond);
     }
-    //
-    // public void updateCentroids(){
-    //
-    // }
-    //
 
     public void loadFile(String filename) {
         try{
@@ -265,10 +257,6 @@ public class Kcluster {
                 }
             }
             min = trainingData.size()/2;
-            // System.out.println("hoi");
-            // for(int j = 0 ; j < trainingData.size(); j++){
-            //     trainingData.get(j).print();
-            // }
             inData.close();
         } catch (Exception e) {//Catch exception if any
             System.err.println("Error: " + e.getMessage());

@@ -7,8 +7,8 @@ public class Vectors {
   public ArrayList<Double> distance;
 
   public Vectors(Double x, Double y){
-    this.x = x;
-    this.y = y;
+    this.x = new Double(x);
+    this.y = new Double(y);
     this.distance = new ArrayList<Double>();
   }
   public Vectors(ArrayList<Double> list){
@@ -17,11 +17,11 @@ public class Vectors {
   }
 
   public Vectors(Vectors v){
-    this.x = v.x;
-    this.y = v.y;
+    this.x = new Double(v.x);
+    this.y = new Double(v.y);
     this.distance =  new ArrayList<Double>();
     for(int i = 0; i < v.distance.size(); i++){
-      Double newV = v.distance.get(i);
+      Double newV = new Double(v.distance.get(i));
       this.distance.add(newV);
     }
   }

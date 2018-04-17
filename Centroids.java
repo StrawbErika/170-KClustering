@@ -12,8 +12,8 @@ public class Centroids {
   public ArrayList<Vectors> vectors; // those clustered to it
 
   public Centroids(Double x, Double y){
-    this.x = x;
-    this.y = y;
+    this.x = new Double(x);
+    this.y = new Double(y);
     this.vectors =  new ArrayList<Vectors>();
   }
 
@@ -23,8 +23,8 @@ public class Centroids {
   }
 
   public Centroids(Centroids c){
-    this.x = c.x;
-    this.y = c.y;
+    this.x = new Double(c.x);
+    this.y = new Double(c.y);
     this.vectors =  new ArrayList<Vectors>();
     for(int i = 0; i < c.vectors.size(); i++){
       Vectors newV = new Vectors(c.vectors.get(i));

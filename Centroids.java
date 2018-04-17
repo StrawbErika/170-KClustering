@@ -25,8 +25,10 @@ public class Centroids {
   public Centroids(Centroids c){
     this.x = c.x;
     this.y = c.y;
+    this.vectors =  new ArrayList<Vectors>();
     for(int i = 0; i < c.vectors.size(); i++){
-      this.vectors.add(c.vectors.get(i));
+      Vectors newV = new Vectors(c.vectors.get(i));
+      this.vectors.add(newV);
     }
   }
 

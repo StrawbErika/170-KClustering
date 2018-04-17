@@ -116,6 +116,7 @@ public class Kcluster {
             trainingDataDuplicate.remove(n);
         }
         else {
+
             if(!c.vectors.contains(n)){
                 c.vectors.add(n);
                 trainingDataDuplicate.remove(n);

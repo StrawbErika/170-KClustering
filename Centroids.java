@@ -26,8 +26,13 @@ public class Centroids {
     this.x = new Double(c.x);
     this.y = new Double(c.y);
     this.vectors =  new ArrayList<Vectors>();
+    System.out.println("Replacing............ ");
+    
+    
     for(int i = 0; i < c.vectors.size(); i++){
       Vectors newV = new Vectors(c.vectors.get(i));
+      System.out.println("I ADDED ");
+      newV.print();
       this.vectors.add(newV);
     }
   }
@@ -41,9 +46,9 @@ public class Centroids {
         vectors.get(i).print();
       }
     }
-    else{
-      System.out.println("no vectors yet ");
-    }
+    // else{
+    //   System.out.println("no vectors yet ");
+    // }
   }
 
   public void printMore(){

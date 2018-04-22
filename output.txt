@@ -1,87 +1,9 @@
 0
 previous centroid -> centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  
-0
-previous centroid -> centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  
-0
-previous centroid -> centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  
-0
-previous centroid -> centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  
-0
-previous centroid -> centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  
-0
-previous centroid -> centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  
-0
-previous centroid -> centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  
-0
-previous centroid -> centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  
-0
-previous centroid -> centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  
-0
-previous centroid -> centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  
-0
-previous centroid -> centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  
-0
-previous centroid -> centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  
-0
-previous centroid -> centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  
-0
-previous centroid -> centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  
-0
-previous centroid -> centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  
-0
-previous centroid -> centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  
+current centroid -> centroid: 0.0,0.0):  centroid: 2.0,3.0):  
 1
-previous centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 4.25,4.0):  centroid: 1.5,1.5):  
-0
-previous centroid -> centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  
-1
-previous centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 4.25,4.0):  centroid: 1.5,1.5):  
-0
-previous centroid -> centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  
-1
-previous centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 4.25,4.0):  centroid: 1.5,1.5):  
-0
-previous centroid -> centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  
-1
-previous centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 4.25,4.0):  centroid: 1.5,1.5):  
-0
-previous centroid -> centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  
-1
-previous centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 4.25,4.0):  centroid: 1.5,1.5):  
-0
-previous centroid -> centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  
-1
-previous centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 4.25,4.0):  centroid: 1.5,1.5):  
-0
-previous centroid -> centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  
-1
-previous centroid -> centroid: 13.0,2.4):  centroid: 1.3,4.3):  centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 4.25,4.0):  centroid: 1.5,1.5):  
+previous centroid -> centroid: 0.0,0.0):  centroid: 2.0,3.0):  
+current centroid -> centroid: 4.0,12.25):  centroid: 26.25,17.25):  
+2
+previous centroid -> centroid: 4.0,12.25):  centroid: 26.25,17.25):  
+current centroid -> centroid: 4.0,12.25):  centroid: 26.25,17.25):  

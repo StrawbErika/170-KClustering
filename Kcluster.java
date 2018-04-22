@@ -16,7 +16,7 @@ public class Kcluster {
     public ArrayList<Centroids> currentCentroids;
     public ArrayList<Centroids> prevCentroids;
     public ArrayList<Vectors> trainingData;
-    public ArrayList<Vectors> trainingDataDuplicate;
+    public ArrayList<Vectors> trainingDataDuplicate; 
     public Integer k;
     public Integer min;
     public Boolean isTwo;
@@ -31,60 +31,87 @@ public class Kcluster {
     }
 
     public void findFinalCentroids(){
-      initializeCentroids();
-      int i = 0;
-      while(comparePrevCurrent()){
-        saveFile(i);
-        updatePrevCentroids();
-        getAllDistance();
-        getKcluster();
-        updateCentroids();
-        i++;
-      }
+        initializeCentroids();
+        int i = 0;
+        boolean change = true;
+        while(change){
+            change = comparePrevCurrent(i);
+            saveFile(i);
+            getAllDistance();
+            getKcluster();
+            updatePrevCentroids();
+            updateCentroids();
+            i++;
+        }
     }
 
-    public Boolean comparePrevCurrent(){
-      Boolean change = false;
-      if(isTwo){
-        for(int j = 0; j < currentCentroids.size(); j++){
-          Boolean isInPrev = false;
-          System.out.println("CURRENT");
-          currentCentroids.get(j).print();
-          for(int index = 0; index < prevCentroids.size(); index++){
-            System.out.println("PREV");
-            prevCentroids.get(j).print();
+    public Boolean comparePrevCurrent(int i){
+        Boolean change = false;
             System.out.println("");
-            if((currentCentroids.get(j).x.equals(prevCentroids.get(index).x)) || (currentCentroids.get(j).y.equals(prevCentroids.get(index).y))){
-              isInPrev = true;
-            }
-          }
-          System.out.println("");
-          System.out.println("");
-
-          if(!isInPrev){
-            change = true;
-          }
+        if(i==0){
+            System.out.println(i + "ITERATION CURRENT & PREV CENTROIDS HAS NO VECTORS ----------------------");
+        }else{
+            System.out.println(i + "TH ITERATION - -- - -- - - -- - - - - -- - -- - -------------------------");
         }
-      }
-      return change;
+            System.out.println("");
+        
+        if(isTwo){
+            for(int j = 0; j < currentCentroids.size(); j++){
+                System.out.println(j+"th CURRENT CENTROIDS ------------------------------------------------------------");
+                currentCentroids.get(j).print();
+                Boolean isInPrev = false;
+                System.out.println("");
+    
+                for(int index = 0; index < prevCentroids.size(); index++){
+                    System.out.println(prevCentroids.size());
+                    System.out.println(index+"th PREVIOUS CENTROIDS ------------------------------------------------------------");
+                    prevCentroids.get(j).print();
+                    System.out.println("");
+                    if((currentCentroids.get(j).x.equals(prevCentroids.get(index).x)) || (currentCentroids.get(j).y.equals(prevCentroids.get(index).y))){
+                       isInPrev = true;
+                    }
+                }
+                if(!isInPrev){
+                    change = true;
+                }
+            }
+        }
+        return change;
     }
 
     public void updatePrevCentroids(){
-      for(int j=0; j < currentCentroids.size(); j++){
-        prevCentroids.add(j, new Centroids(currentCentroids.get(j)));
+        prevCentroids.clear();
+        for(int j=0; j < currentCentroids.size(); j++){
+            System.out.println("Going to replace prevCentroids ---------------------------------------------------");
+            prevCentroids.add(j, new Centroids(currentCentroids.get(j)));
+        }
+    }
+
+
+    public void clearVectorList(){
+      for(int j = 0; j < currentCentroids.size(); j++){
+        currentCentroids.get(j).vectors.clear();
+      }
+
+      //y trainingData?
+      for(int j = 0; j < trainingData.size(); j++){
+        trainingData.get(j).distance.clear();
       }
     }
 
     public void updateCentroids(){
-      if(isTwo){
-        for(int j = 0; j < currentCentroids.size(); j++){
-          averageTwoDistance(currentCentroids.get(j));
-        }
-      }else{
+        System.out.println("Updating Centroids --------------------------------------------------------------");
+        System.out.println("");
 
-      }
-      clearVectorList();
-      initializeDuplicate();
+        if(isTwo){
+            for(int j = 0; j < currentCentroids.size(); j++){
+            averageTwoDistance(currentCentroids.get(j));
+            }
+        }else{
+
+        }
+        clearVectorList();
+        initializeDuplicate();
     }
 
     public void averageTwoDistance(Centroids c){
@@ -99,41 +126,87 @@ public class Kcluster {
         c.y = y/c.vectors.size();
     }
 
-
     public void getKcluster(){
-      Double distance = 0.0;
-      int i = 0;
-      for(int j=0; j < currentCentroids.size(); j++){
-        getKnearest(currentCentroids.get(j), j);
-      }
+        System.out.println("Getting KCluster --------------------------------------------------------------");
+        System.out.println("");
+        Double distance = 0.0;
+        int i = 0;
+        for(int j=0; j < currentCentroids.size(); j++){
+            getKnearest(currentCentroids.get(j), j);
+            currentCentroids.get(j).print();
+        }
     }
 
     public void getKnearest(Centroids c, int j){
-      for(int i = 0; i < min; i++){
-        Vectors n = getNearest(j);
-        if(i == 0){
-            c.vectors.add(n);
-            trainingDataDuplicate.remove(n);
-        }
-        else {
-
-            if(!c.vectors.contains(n)){
+        System.out.println("Getting Knearest --------------------------------------------------------------");
+        System.out.println("");
+        System.out.println(min);
+        for(int i = 0; i < min; i++){
+            Vectors n = getNearest(j);
+            if(i == 0){
                 c.vectors.add(n);
                 trainingDataDuplicate.remove(n);
             }
+            else {
+                if(!c.vectors.contains(n)){
+                    c.vectors.add(n);
+                    trainingDataDuplicate.remove(n);
+                }
+            }
+            System.out.println("getKnearest: ADDING VECTOR to Centroid "+c.x +" "+c.y );
+            n.print();
         }
-      }
     }
 
-    public void clearVectorList(){
-      for(int j = 0; j < currentCentroids.size(); j++){
-        currentCentroids.get(j).vectors.clear();
-      }
-      for(int j = 0; j < trainingData.size(); j++){
-        trainingData.get(j).distance.clear();
-      }
+    public Vectors getNearest(int x){
+        Double min = 9999999.9;
+        int minIndex = 0;
+        for(int i = 0; i < trainingDataDuplicate.size(); i++){
+            if(trainingDataDuplicate.get(i).distance.get(x) < min){
+            min = trainingDataDuplicate.get(i).distance.get(x);
+            minIndex = i;
+            }
+        }
+        return trainingDataDuplicate.get(minIndex);
     }
 
+    public void getAllDistance(){
+        System.out.println("Getting all Distance --------------------------------------------------------------");
+        System.out.println("");
+        if(isTwo){
+            for(int i = 0; i < trainingData.size(); i++){ 
+                for(int j = 0; j < currentCentroids.size(); j++){
+                    computeDistance(trainingData.get(i), currentCentroids.get(j));
+                }
+            }
+        }
+        else{
+            for(int i = 0; i < trainingData.size(); i++){
+                for(int j = 0; j < currentCentroids.size(); j++){
+                    computeMoreDistance(trainingData.get(i), currentCentroids.get(j));
+                }
+            }
+        }
+        this.initializeDuplicate();
+    }
+
+
+    public void computeDistance(Vectors training, Centroids currentCentroids){ //euclidean distance
+      Double squareY = (currentCentroids.y - training.y) * (currentCentroids.y - training.y);
+      Double squareX = (currentCentroids.x - training.x) * (currentCentroids.x - training.x);
+      Double d = Math.sqrt(squareX + squareY);
+      training.distance.add(d);
+    }
+
+    public void computeMoreDistance(Vectors training, Centroids currentCentroids){ //b is training data
+        Double d = 0.0;
+        for(int i = 0; i < training.list.size(); i+=2){
+          Double squareOne = (currentCentroids.list.get(i) - training.list.get(i)) * (currentCentroids.list.get(i) - training.list.get(i));
+          Double squareTwo = (currentCentroids.list.get(i+1) - training.list.get(i+1)) * (currentCentroids.list.get(i+1) - training.list.get(i+1));
+          d = Math.sqrt(squareOne + squareTwo) + d;
+        }
+        training.distance.add(d);
+    }
 
     public void initializeDuplicate(){
         trainingDataDuplicate = new ArrayList<Vectors>();
@@ -155,56 +228,6 @@ public class Kcluster {
         }
     }
 
-    public Vectors getNearest(int x){
-      Double min = 9999999.9;
-      int minIndex = 0;
-      for(int i = 0; i < trainingDataDuplicate.size(); i++){
-        if(trainingDataDuplicate.get(i).distance.get(x) < min){
-          min = trainingDataDuplicate.get(i).distance.get(x);
-          minIndex = i;
-        }
-      }
-      return trainingDataDuplicate.get(minIndex);
-    }
-
-    public void getAllDistance(){
-      if(isTwo){
-        // System.out.println("Computing Distance.......................................");
-        for(int i = 0; i < trainingData.size(); i++){
-            for(int j = 0; j < currentCentroids.size(); j++){
-                computeDistance(trainingData.get(i), currentCentroids.get(j));
-            }
-        }
-
-      }
-      else{
-        for(int i = 0; i < trainingData.size(); i++){
-            for(int j = 0; j < currentCentroids.size(); j++){
-                computeMoreDistance(trainingData.get(i), currentCentroids.get(j));
-            }
-        }
-      }
-      this.initializeDuplicate();
-    }
-
-
-    public void computeDistance(Vectors training, Centroids currentCentroids){
-      Double squareX = (currentCentroids.x - training.x) * (currentCentroids.x - training.x);
-      Double squareY = (currentCentroids.y - training.y) * (currentCentroids.y - training.y);
-      Double d = Math.sqrt(squareX + squareY);
-      training.distance.add(d);
-    }
-
-    public void computeMoreDistance(Vectors training, Centroids currentCentroids){ //b is training data
-        Double d = 0.0;
-        for(int i = 0; i < training.list.size(); i+=2){
-          Double squareOne = (currentCentroids.list.get(i) - training.list.get(i)) * (currentCentroids.list.get(i) - training.list.get(i));
-          Double squareTwo = (currentCentroids.list.get(i+1) - training.list.get(i+1)) * (currentCentroids.list.get(i+1) - training.list.get(i+1));
-          d = Math.sqrt(squareOne + squareTwo) + d;
-        }
-        training.distance.add(d);
-    }
-
     public void initializeCentroids(){
         // Random rand = new Random();
         // if(isTwo){
@@ -215,8 +238,8 @@ public class Kcluster {
         //         currentCentroids.add(centroid);
         //     }
         // }
-        Centroids first = new Centroids(13.0,2.4);
-        Centroids second = new Centroids(1.3,4.3);
+        Centroids first = new Centroids(0.0,0.0);
+        Centroids second = new Centroids(2.0,3.0);
         currentCentroids.add(first);
         currentCentroids.add(second);
         Centroids prevfirst = new Centroids(999999.0,999999.0);
@@ -225,7 +248,7 @@ public class Kcluster {
         prevCentroids.add(prevSecond);
     }
 
-    public void loadFile(String filename) {
+    public void loadFile(String filename) { //load
         try{
             FileInputStream fstream = new FileInputStream(filename);
             DataInputStream inData = new DataInputStream(fstream);
@@ -257,14 +280,14 @@ public class Kcluster {
                   in++;
                 }
             }
-            min = trainingData.size()/2;
+            min = trainingData.size()/2; 
             inData.close();
         } catch (Exception e) {//Catch exception if any
             System.err.println("Error: " + e.getMessage());
         }
     }
 
-    public void saveFile(int x) { //writes file
+    public void saveFile(int x) { //writes file (wrong format tho)
         String filename = "output.txt";
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true));
@@ -292,48 +315,48 @@ public class Kcluster {
         }
     }
 
-    // public void saveFile() { //writes file
-    //     String filename = "output.txt";
-    //     try {
-    //         BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
-    //         if(isTwo){
-    //           writer.write("Nearest Neighbors of (" + x.x +","+  x.y+ "):");
-    //           for(int i = 0; i < answers.size(); i++){
-    //             writer.write("("+ answers.get(i).x+","+ answers.get(i).y +") ");
-    //           }
-    //           writer.write("\n");
-    //           writer.write("Class of (" + x.x +","+ x.y+ "):" + x.c);
-    //         }
-    //         else{
-    //           System.out.println("ANSWERS ");
-    //           writer.write("Nearest Neighbors of (");
-    //           for(int i = 0; i < x.list.size(); i++){
-    //             writer.write(x.list.get(i) +",");
-    //           }
-    //           writer.write("):");
-    //           for(int i = 0; i < answers.size(); i++){
-    //             writer.write("(");
-    //             for(int j = 0; j < answers.get(i).list.size(); j++){
-    //               writer.write(answers.get(i).list.get(j)+",");
-    //             }
-    //             writer.write(") ");
-    //           }
-    //           writer.write("\n");
-    //           writer.write("Class of (");
-    //           for(int i = 0; i < x.list.size(); i++){
-    //             writer.write(x.list.get(i) +",");
-    //           }
-    //           writer.write("):" + x.c);
-    //
-    //         }
-    //
-    //         writer.close();
-    //     }
-    //     catch(FileNotFoundException ex) {
-    //         System.out.println("Unable to open file '" + filename + "'");
-    //     }
-    //     catch(IOException ex) {
-    //         System.out.println("Error writing file '" + filename + "'");
-    //     }
-    // }
+//     // public void saveFile() { //writes file
+//     //     String filename = "output.txt";
+//     //     try {
+//     //         BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
+//     //         if(isTwo){
+//     //           writer.write("Nearest Neighbors of (" + x.x +","+  x.y+ "):");
+//     //           for(int i = 0; i < answers.size(); i++){
+//     //             writer.write("("+ answers.get(i).x+","+ answers.get(i).y +") ");
+//     //           }
+//     //           writer.write("\n");
+//     //           writer.write("Class of (" + x.x +","+ x.y+ "):" + x.c);
+//     //         }
+//     //         else{
+//     //           System.out.println("ANSWERS ");
+//     //           writer.write("Nearest Neighbors of (");
+//     //           for(int i = 0; i < x.list.size(); i++){
+//     //             writer.write(x.list.get(i) +",");
+//     //           }
+//     //           writer.write("):");
+//     //           for(int i = 0; i < answers.size(); i++){
+//     //             writer.write("(");
+//     //             for(int j = 0; j < answers.get(i).list.size(); j++){
+//     //               writer.write(answers.get(i).list.get(j)+",");
+//     //             }
+//     //             writer.write(") ");
+//     //           }
+//     //           writer.write("\n");
+//     //           writer.write("Class of (");
+//     //           for(int i = 0; i < x.list.size(); i++){
+//     //             writer.write(x.list.get(i) +",");
+//     //           }
+//     //           writer.write("):" + x.c);
+//     //
+//     //         }
+//     //
+//     //         writer.close();
+//     //     }
+//     //     catch(FileNotFoundException ex) {
+//     //         System.out.println("Unable to open file '" + filename + "'");
+//     //     }
+//     //     catch(IOException ex) {
+//     //         System.out.println("Error writing file '" + filename + "'");
+//     //     }
+//     // }
 }

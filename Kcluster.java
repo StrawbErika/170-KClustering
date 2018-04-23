@@ -49,40 +49,43 @@ public class Kcluster {
         Boolean change = false;
             System.out.println("");
         if(i==0){
-            System.out.println(i + "ITERATION CURRENT & PREV CENTROIDS HAS NO VECTORS ----------------------");
+            // System.out.println(i + "ITERATION CURRENT & PREV CENTROIDS HAS NO VECTORS ----------------------");
         }else{
-            System.out.println(i + "TH ITERATION - -- - -- - - -- - - - - -- - -- - -------------------------");
+            // System.out.println(i + "TH ITERATION - -- - -- - - -- - - - - -- - -- - -------------------------");
         }
-            System.out.println("");
+            // System.out.println("");
         
-        // if(isTwo){
-        //     for(int j = 0; j < currentCentroids.size(); j++){
-        //         System.out.println(j+"th CURRENT CENTROIDS ------------------------------------------------------------");
-        //         currentCentroids.get(j).print();
-        //         Boolean isInPrev = false;
-        //         System.out.println("");
-    
-        //         for(int index = 0; index < prevCentroids.size(); index++){
-        //             System.out.println(prevCentroids.size());
-        //             System.out.println(index+"th PREVIOUS CENTROIDS ------------------------------------------------------------");
-        //             prevCentroids.get(j).print();
-        //             System.out.println("");
-        //             if((currentCentroids.get(j).x.equals(prevCentroids.get(index).x)) || (currentCentroids.get(j).y.equals(prevCentroids.get(index).y))){
-        //                isInPrev = true;
-        //             }
-        //         }
-        //         if(!isInPrev){
-        //             change = true;
-        //         }
-        //     }
-        // }
+        System.out.println("INFINITE");
+        for(int j = 0; j < currentCentroids.size(); j++){
+            // System.out.println(j+"th CURRENT CENTROIDS ------------------------------------------------------------");
+            // currentCentroids.get(j).print();
+            
+            Boolean isInPrev = true;
+            // System.out.println("");
+
+            for(int index = 0; index < prevCentroids.size(); index++){
+                // System.out.println(prevCentroids.size());
+                // System.out.println(index+"th PREVIOUS CENTROIDS ------------------------------------------------------------");
+                // prevCentroids.get(j).print();
+                
+                for(int p = 0; p < prevCentroids.get(j).list.size(); p++){
+                    if(prevCentroids.get(j).list.get(p) != currentCentroids.get(j).list.get(p)){
+                        isInPrev = false;
+                    } 
+                }
+            }
+            if(!isInPrev){
+                change = true;
+            }
+        }
         return change;
     }
+
 
     public void updatePrevCentroids(){
         prevCentroids.clear();
         for(int j=0; j < currentCentroids.size(); j++){
-            System.out.println("Going to replace prevCentroids ---------------------------------------------------");
+            // System.out.println("Going to replace prevCentroids ---------------------------------------------------");
             prevCentroids.add(j, new Centroids(currentCentroids.get(j)));
         }
     }
@@ -102,16 +105,13 @@ public class Kcluster {
 
 
     public void updateCentroids(){
-        System.out.println("Updating Centroids --------------------------------------------------------------");
-        System.out.println("");
+        // System.out.println("Updating Centroids --------------------------------------------------------------");
+        // System.out.println("");
 
-        // if(isTwo){
-        //     for(int j = 0; j < currentCentroids.size(); j++){
-        //     averageTwoDistance(currentCentroids.get(j));
-        //     }
-        // }else{
+        for(int j = 0; j < currentCentroids.size(); j++){
+            averageDistance(currentCentroids.get(j));
+        }
 
-        // }
         clearVectorList();
         initializeDuplicate();
     }
@@ -137,19 +137,19 @@ public class Kcluster {
     }
 
     public void getKcluster(){
-        System.out.println("Getting KCluster --------------------------------------------------------------");
-        System.out.println("");
+        // System.out.println("Getting KCluster --------------------------------------------------------------");
+        // System.out.println("");
         Double distance = 0.0;
         int i = 0;
         for(int j=0; j < currentCentroids.size(); j++){
             getKnearest(currentCentroids.get(j), j);
-            currentCentroids.get(j).print();
+            // currentCentroids.get(j).print();
         }
     }
 
     public void getKnearest(Centroids c, int j){
-        System.out.println("Getting Knearest --------------------------------------------------------------");
-        System.out.println("");
+        // System.out.println("Getting Knearest --------------------------------------------------------------");
+        // System.out.println("");
         for(int i = 0; i < min; i++){
             Vectors n = getNearest(j);
             if(i == 0){
@@ -178,8 +178,8 @@ public class Kcluster {
     }
 
     public void getAllDistance(){
-        System.out.println("Getting all Distance --------------------------------------------------------------");
-        System.out.println("");
+        // System.out.println("Getting all Distance --------------------------------------------------------------");
+        // System.out.println("");
         for(int i = 0; i < trainingData.size(); i++){
             for(int j = 0; j < currentCentroids.size(); j++){
                 computeDistance(trainingData.get(i), currentCentroids.get(j));
@@ -204,9 +204,12 @@ public class Kcluster {
         for(int index = 0; index < trainingData.size(); index++){
             ArrayList<Double> dble = new ArrayList<Double>();
             for(int j = 0; j < trainingData.get(index).list.size(); j++){
-                dble.add(trainingData.get(index).list.get(j));
+                Double d = trainingData.get(index).list.get(j);
+                dble.add(d);
             }
             Vectors newV = new Vectors(dble);
+            trainingDataDuplicate.add(newV);
+            
             for(int j = 0; j < trainingData.get(index).distance.size(); j++){
                 trainingDataDuplicate.get(index).distance.add(trainingData.get(index).distance.get(j));
             }
@@ -223,6 +226,7 @@ public class Kcluster {
 
     public void initializeCentroids(){
         Random rand = new Random();
+        System.out.println("THIS IS K " + k + "------------------------------------------");
         for (int index = 0 ; index < k; index++){
             ArrayList<Double> l = new ArrayList<Double>();
             ArrayList<Double> l2 = new ArrayList<Double>();
@@ -277,26 +281,26 @@ public class Kcluster {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true));
             writer.write(x+"\n");
-            if(isTwo){
-              writer.write("previous centroid -> ");
-              for(int i = 0; i < prevCentroids.size(); i++){
-                writer.write("centroid: (");
+            writer.write("previous centroid -> ");
+            writer.write("centroid: (");
+            for(int i = 0; i < prevCentroids.size(); i++){
+                writer.write("\n");
                 for(int j = 0; j < prevCentroids.get(i).list.size(); j++){
                     writer.write(prevCentroids.get(i).list.get(j) + ", ");
                 }
+            }
+            writer.write("\n");
+            
+            writer.write("current centroid -> ");
+            writer.write("centroid: (");
+            for(int i = 0; i < currentCentroids.size(); i++){
                 writer.write("\n");
-              }
-              writer.write("\n");
-              writer.write("current centroid -> ");
-              for(int i = 0; i < currentCentroids.size(); i++){
                 for(int j = 0; j < currentCentroids.get(i).list.size(); j++){
                     writer.write(currentCentroids.get(i).list.get(j) + ", ");
                 }
-                writer.write("\n");
-              }
-              writer.write("\n");
-
             }
+            writer.write("\n");
+
             writer.close();
         }
         catch(FileNotFoundException ex) {

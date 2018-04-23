@@ -1,8 +1,8 @@
 0
 previous centroid -> centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
-current centroid -> centroid: 44.27989913527354,19.853818821979427):  centroid: 26.188003836862997,21.107369157738653):  
+current centroid -> centroid: 49.1373839116746,49.92906438071872):  centroid: 17.181573387599265,40.80187488507149):  
 1
-previous centroid -> centroid: 44.27989913527354,19.853818821979427):  centroid: 26.188003836862997,21.107369157738653):  
+previous centroid -> centroid: 49.1373839116746,49.92906438071872):  centroid: 17.181573387599265,40.80187488507149):  
 current centroid -> centroid: 27.5,16.75):  centroid: 2.75,12.75):  
 2
 previous centroid -> centroid: 27.5,16.75):  centroid: 2.75,12.75):  
@@ -16,3 +16,13 @@ current centroid -> centroid: 4.25,20.25):  centroid: 26.0,9.25):
 5
 previous centroid -> centroid: 4.25,20.25):  centroid: 26.0,9.25):  
 current centroid -> centroid: 4.25,20.25):  centroid: 26.0,9.25):  
+0
+previous centroid -> centroid: 999999.0,999999.0):  centroid: 999999.0,999999.0):  
+current centroid -> centroid: 4.807568568092539,19.161484493998042):  centroid: 22.66677648235689,25.16652811985536):  
+1
+previous centroid -> centroid: 4.807568568092539,19.161484493998042):  centroid: 22.66677648235689,25.16652811985536):  
+current centroid -> centroid: 4.25,20.25):  centroid: 26.0,9.25):  
+2
+previous centroid -> centroid: 4.25,20.25):  centroid: 26.0,9.25):  
+current centroid -> centroid: 4.25,20.25):  centroid: 26.0,9.25):  
+0

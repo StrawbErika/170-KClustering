@@ -47,45 +47,32 @@ public class Kcluster {
 
     public Boolean comparePrevCurrent(int i){
         Boolean change = false;
-            System.out.println("");
-        if(i==0){
-            // System.out.println(i + "ITERATION CURRENT & PREV CENTROIDS HAS NO VECTORS ----------------------");
-        }else{
-            // System.out.println(i + "TH ITERATION - -- - -- - - -- - - - - -- - -- - -------------------------");
-        }
-            // System.out.println("");
-        
-        System.out.println("INFINITE");
         for(int j = 0; j < currentCentroids.size(); j++){
-            // System.out.println(j+"th CURRENT CENTROIDS ------------------------------------------------------------");
-            // currentCentroids.get(j).print();
             
-            Boolean isInPrev = true;
-            // System.out.println("");
-
-            for(int index = 0; index < prevCentroids.size(); index++){
-                // System.out.println(prevCentroids.size());
-                // System.out.println(index+"th PREVIOUS CENTROIDS ------------------------------------------------------------");
-                // prevCentroids.get(j).print();
-                
-                for(int p = 0; p < prevCentroids.get(j).list.size(); p++){
-                    if(prevCentroids.get(j).list.get(p) != currentCentroids.get(j).list.get(p)){
-                        isInPrev = false;
-                    } 
-                }
-            }
-            if(!isInPrev){
+            Boolean isNotInPrev = false;
+            isNotInPrev = isInArray(prevCentroids, currentCentroids.get(j));
+            if(!isNotInPrev){
                 change = true;
             }
         }
         return change;
     }
 
+    public Boolean isInArray(ArrayList<Centroids> d, Centroids c){
+        Boolean ans = false;
+        for(int index = 0; index < d.size(); index++){
+            for(int p = 0; p < c.list.size(); p++){
+                if(d.get(index).list.get(p).equals(c.list.get(p))){
+                    ans = true;
+                }
+            }
+        }
+        return ans;
+    }
 
     public void updatePrevCentroids(){
         prevCentroids.clear();
         for(int j=0; j < currentCentroids.size(); j++){
-            // System.out.println("Going to replace prevCentroids ---------------------------------------------------");
             prevCentroids.add(j, new Centroids(currentCentroids.get(j)));
         }
     }
@@ -105,9 +92,6 @@ public class Kcluster {
 
 
     public void updateCentroids(){
-        // System.out.println("Updating Centroids --------------------------------------------------------------");
-        // System.out.println("");
-
         for(int j = 0; j < currentCentroids.size(); j++){
             averageDistance(currentCentroids.get(j));
         }
@@ -137,19 +121,14 @@ public class Kcluster {
     }
 
     public void getKcluster(){
-        // System.out.println("Getting KCluster --------------------------------------------------------------");
-        // System.out.println("");
         Double distance = 0.0;
         int i = 0;
         for(int j=0; j < currentCentroids.size(); j++){
             getKnearest(currentCentroids.get(j), j);
-            // currentCentroids.get(j).print();
         }
     }
 
     public void getKnearest(Centroids c, int j){
-        // System.out.println("Getting Knearest --------------------------------------------------------------");
-        // System.out.println("");
         for(int i = 0; i < min; i++){
             Vectors n = getNearest(j);
             if(i == 0){
@@ -178,8 +157,6 @@ public class Kcluster {
     }
 
     public void getAllDistance(){
-        // System.out.println("Getting all Distance --------------------------------------------------------------");
-        // System.out.println("");
         for(int i = 0; i < trainingData.size(); i++){
             for(int j = 0; j < currentCentroids.size(); j++){
                 computeDistance(trainingData.get(i), currentCentroids.get(j));
@@ -226,7 +203,6 @@ public class Kcluster {
 
     public void initializeCentroids(){
         Random rand = new Random();
-        System.out.println("THIS IS K " + k + "------------------------------------------");
         for (int index = 0 ; index < k; index++){
             ArrayList<Double> l = new ArrayList<Double>();
             ArrayList<Double> l2 = new ArrayList<Double>();

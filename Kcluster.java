@@ -114,6 +114,16 @@ public class Kcluster {
         initializeDuplicate();
     }
 
+    public void averageMoreDistance(Centroids c){
+        for(int index = 0; index < c.vectors.size(); index++){
+           Double d = 0.0;
+           for(int j = 0; j < c.vectors.get(index).list.size(); j++){
+               d = c.vectors.get(index).
+           }
+        }
+    }
+
+
     public void averageTwoDistance(Centroids c){
         Double x = 0.0;
         Double y = 0.0;
@@ -228,24 +238,45 @@ public class Kcluster {
         }
     }
 
+    public Double getRandomDouble(){
+        Random rand = new Random();
+        int xInt = rand.nextInt(50);
+        Double xD = rand.nextDouble();
+        Double ans = xInt + xD;
+        return ans;
+    }
     public void initializeCentroids(){
-        // Random rand = new Random();
-        // if(isTwo){
-        //     for (int index = 0 ; index < k*2; index+=2){
-        //         Double x = rand.nextDouble(50);
-        //         Double y = rand.nextDouble(50);
-        //         Vectors centroid = new Centroids(x,y);
-        //         currentCentroids.add(centroid);
-        //     }
-        // }
-        Centroids first = new Centroids(0.0,0.0);
-        Centroids second = new Centroids(2.0,3.0);
-        currentCentroids.add(first);
-        currentCentroids.add(second);
-        Centroids prevfirst = new Centroids(999999.0,999999.0);
-        Centroids prevSecond = new Centroids(999999.0,999999.0);
-        prevCentroids.add(prevfirst);
-        prevCentroids.add(prevSecond);
+        Random rand = new Random();
+        if(isTwo){
+            for (int index = 0 ; index < k*2; index+=2){
+                Double x = getRandomDouble();
+                Double y = getRandomDouble();
+                Centroids centroid = new Centroids(x,y);
+                currentCentroids.add(centroid);
+
+                Double x2 = 999999.0;
+                Double y2 = 999999.0;
+                Centroids centroid2 = new Centroids(x2,y2);
+                prevCentroids.add(centroid2);
+            }
+        }
+        else{
+            for (int index = 0 ; index < k; index++){
+                ArrayList<Double> l = new ArrayList<Double>();
+                ArrayList<Double> l2 = new ArrayList<Double>();
+                for(int j = 0; j < trainingData.get(0).list.size(); j++){
+                    Double x = getRandomDouble();
+                    l.add(x);
+
+                    Double x2 = 999999.0;
+                    l2.add(x2);
+                }   
+                Centroids centroid = new Centroids(l);
+                Centroids centroid2 = new Centroids(l2);
+                currentCentroids.add(centroid);
+                prevCentroids.add(centroid2);
+            }
+        }
     }
 
     public void loadFile(String filename) { //load

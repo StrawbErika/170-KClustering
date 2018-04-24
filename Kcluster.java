@@ -12,7 +12,8 @@ import java.util.*;
 import java.lang.Math.*;
 
 public class Kcluster {
-
+    
+    public ArrayList<ArrayList<Centroids>> iterations;
     public ArrayList<Centroids> currentCentroids;
     public ArrayList<Centroids> prevCentroids;
     public ArrayList<Vectors> trainingData;
@@ -27,6 +28,7 @@ public class Kcluster {
         this.currentCentroids = new ArrayList<Centroids>();
         this.prevCentroids = new ArrayList<Centroids>();
         this.trainingData = new ArrayList<Vectors>();
+        this.iterations = new ArrayList<ArrayList<Centroids>>();
     }
 
     public void findFinalCentroids(){
@@ -34,16 +36,17 @@ public class Kcluster {
         int i = 0;
         boolean change = true;
         while(change){
+            iterations.add(prevCentroids);
+            iterations.add(currentCentroids);
             change = comparePrevCurrent(i);
-            saveFile(i);
             getAllDistance();
             getKcluster();
             updatePrevCentroids();
             updateCentroids();
             i++;
         }
+        saveFile(i);
     }
-//fix updateCentroids, initializeDuplicate, comparePrevCurrent
 
     public Boolean comparePrevCurrent(int i){
         Boolean change = false;
@@ -255,28 +258,30 @@ public class Kcluster {
     public void saveFile(int x) { //writes file (wrong format tho)
         String filename = "output.txt";
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true));
-            writer.write(x+"\n");
-            writer.write("previous centroid -> ");
-            writer.write("centroid: (");
-            for(int i = 0; i < prevCentroids.size(); i++){
-                writer.write("\n");
-                for(int j = 0; j < prevCentroids.get(i).list.size(); j++){
-                    writer.write(prevCentroids.get(i).list.get(j) + ", ");
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
+            for(int p = 0; p < iterations.size(); p++){
+                if(p%2 == 0){
+                    writer.write("CURRENT CENTROIDS \n");
                 }
-            }
-            writer.write("\n");
-            
-            writer.write("current centroid -> ");
-            writer.write("centroid: (");
-            for(int i = 0; i < currentCentroids.size(); i++){
-                writer.write("\n");
-                for(int j = 0; j < currentCentroids.get(i).list.size(); j++){
-                    writer.write(currentCentroids.get(i).list.get(j) + ", ");
+                else{
+                    writer.write("PREV CENTROIDS \n");
                 }
-            }
-            writer.write("\n");
 
+                for(int r = 0; r < iterations.get(p).size(); r++){
+                    for(int q = 0; q < iterations.get(p).get(r).list.size(); q++){
+                        writer.write(Double.toString(iterations.get(p).get(r).list.get(q)) + " ");
+                    }
+                    writer.write("\n");
+                }
+            }
+                
+            // writer.write("CURRENT CENTROIDS \n");
+            // for(int p = 0; p < entry.getValue().size(); p++){
+            //     for(int q = 0; q < entry.getValue().get(p).list.size(); q++){
+            //         writer.write(Double.toString(entry.getValue().get(p).list.get(q)) + " ");
+            //     }
+            //     writer.write("\n");
+            // }entry.getKey().get(p).list.size()
             writer.close();
         }
         catch(FileNotFoundException ex) {

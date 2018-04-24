@@ -35,13 +35,13 @@ public class Centroids {
     for(int i = 0; i < this.list.size(); i++){
       System.out.print(this.list.get(i) + " ");
     }
-    if(this.vectors.size() > 0){
-      System.out.println("Vectors .............................................");
-      System.out.println(this.vectors.size());
-      for(int i = 0; i < this.vectors.size(); i++){
-        vectors.get(i).print();
-      }
-    }
+    // if(this.vectors.size() > 0){
+    //   System.out.println("Vectors .............................................");
+    //   System.out.println(this.vectors.size());
+    //   for(int i = 0; i < this.vectors.size(); i++){
+    //     vectors.get(i).print();
+    //   }
+    // }
   }
 
 

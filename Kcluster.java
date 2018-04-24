@@ -13,6 +13,7 @@ import java.lang.Math.*;
 
 public class Kcluster {
     public ArrayList<ArrayList<Centroids>> iterations;
+    public ArrayList<ArrayList<Centroids>> iterationsCurrent;
     public ArrayList<Centroids> currentCentroids;
     public ArrayList<Centroids> prevCentroids;
     public ArrayList<Vectors> trainingData;
@@ -28,6 +29,7 @@ public class Kcluster {
         this.prevCentroids = new ArrayList<Centroids>();
         this.trainingData = new ArrayList<Vectors>();
         this.iterations = new ArrayList<ArrayList<Centroids>>();
+        this.iterationsCurrent = new ArrayList<ArrayList<Centroids>>();
     }
 
     public void findFinalCentroids(){
@@ -36,8 +38,28 @@ public class Kcluster {
         boolean change = true;
         while(change){  
             saveThisFile(i);
+
             iterations.add(new ArrayList<Centroids>(prevCentroids));
+
+            // System.out.println(i);
+            // System.out.println("PREV ");
+            // for(int j=0; j < prevCentroids.size(); j++){
+            //     prevCentroids.get(j).print();
+            //     System.out.println("\n");
+            // }
+            // System.out.println("\n");
+
             iterations.add(new ArrayList<Centroids>(currentCentroids));
+            iterationsCurrent.add(new ArrayList<Centroids>(currentCentroids));
+            printThis(i);
+
+            // System.out.println("CURRENT ");
+            // for(int j=0; j < currentCentroids.size(); j++){
+            //     currentCentroids.get(j).print();
+            //     System.out.println("\n");
+            // }
+            // System.out.println("\n");
+
             change = comparePrevCurrent(i);
             getAllDistance();
             getKcluster();
@@ -46,6 +68,27 @@ public class Kcluster {
             i++;
         }
         saveFile(i);
+    }
+
+    public void printThis(int x){
+        System.out.println("\n" + x + "TH ITERATION \n");
+        
+        for(int p = 0; p < iterationsCurrent.size(); p++){
+            // if(p%2 == 0){
+            //     System.out.print("PREV CENTROIDS \n");
+            // }
+            // else{
+            //     System.out.print("CURRENT CENTROIDS \n");
+            // }
+
+            for(int r = 0; r < iterationsCurrent.get(p).size(); r++){
+                for(int q = 0; q < iterationsCurrent.get(p).get(r).list.size(); q++){
+                    System.out.print(Double.toString(iterationsCurrent.get(p).get(r).list.get(q)) + " ");
+                }
+                System.out.print("\n");
+            }
+        }
+
     }
 
     public Boolean comparePrevCurrent(int i){
@@ -94,13 +137,31 @@ public class Kcluster {
 
 
 
+    // public void updateCentroids(){
+    //     for(int j = 0; j < currentCentroids.size(); j++){
+    //         averageDistance(currentCentroids.get(j));
+    //     }
+
+    //     clearVectorList();
+    // }
+
     public void updateCentroids(){
         for(int j = 0; j < currentCentroids.size(); j++){
-            averageDistance(currentCentroids.get(j));
+            currentCentroids.add(j, new Centroids(averageDistance(currentCentroids.get(j))));
+            System.out.println("HOI >:(" + j);
         }
 
         clearVectorList();
-        initializeDuplicate();
+    }
+
+
+    public ArrayList<Double> averageDistance(Centroids c){
+        ArrayList<Double> l = new ArrayList<Double>();
+        for(int index = 0; index < c.vectors.get(1).list.size(); index++){
+            Double x = averageColumn(c, index);
+            l.add(x);
+        }   
+        return l;
     }
 
     public Double averageColumn(Centroids c, int x){
@@ -112,15 +173,6 @@ public class Kcluster {
         }
         d = d / c.vectors.size();
         return d;
-    }
-
-    public void averageDistance(Centroids c){
-        ArrayList<Double> l = new ArrayList<Double>();
-        for(int index = 0; index < c.vectors.get(1).list.size(); index++){
-            Double x = averageColumn(c, index);
-            l.add(x);
-        }   
-        c.list = l;
     }
 
     public void getKcluster(){
@@ -236,6 +288,14 @@ public class Kcluster {
             {
                 if(in > 0){
                     String[] values = line.split(" "); //stores all the words from the line in values
+
+                    if(values.length == 2){
+                        isTwo = true;
+                    }
+                    else{
+                        isTwo = false;
+                    }
+
                     ArrayList<Double> l = new ArrayList<Double>();
                     for(int i = 0; i < values.length; i++){
                         l.add(Double.parseDouble(values[i]));

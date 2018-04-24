@@ -12,7 +12,6 @@ import java.util.*;
 import java.lang.Math.*;
 
 public class Kcluster {
-    
     public ArrayList<ArrayList<Centroids>> iterations;
     public ArrayList<Centroids> currentCentroids;
     public ArrayList<Centroids> prevCentroids;
@@ -35,9 +34,10 @@ public class Kcluster {
         initializeCentroids();
         int i = 0;
         boolean change = true;
-        while(change){
-            iterations.add(prevCentroids);
-            iterations.add(currentCentroids);
+        while(change){  
+            saveThisFile(i);
+            iterations.add(new ArrayList<Centroids>(prevCentroids));
+            iterations.add(new ArrayList<Centroids>(currentCentroids));
             change = comparePrevCurrent(i);
             getAllDistance();
             getKcluster();
@@ -261,10 +261,10 @@ public class Kcluster {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
             for(int p = 0; p < iterations.size(); p++){
                 if(p%2 == 0){
-                    writer.write("CURRENT CENTROIDS \n");
+                    writer.write("PREV CENTROIDS \n");
                 }
                 else{
-                    writer.write("PREV CENTROIDS \n");
+                    writer.write("CURRENT CENTROIDS \n");
                 }
 
                 for(int r = 0; r < iterations.get(p).size(); r++){
@@ -274,14 +274,6 @@ public class Kcluster {
                     writer.write("\n");
                 }
             }
-                
-            // writer.write("CURRENT CENTROIDS \n");
-            // for(int p = 0; p < entry.getValue().size(); p++){
-            //     for(int q = 0; q < entry.getValue().get(p).list.size(); q++){
-            //         writer.write(Double.toString(entry.getValue().get(p).list.get(q)) + " ");
-            //     }
-            //     writer.write("\n");
-            // }entry.getKey().get(p).list.size()
             writer.close();
         }
         catch(FileNotFoundException ex) {
@@ -292,4 +284,38 @@ public class Kcluster {
         }
     }
 
+    public void saveThisFile(int x) { //writes file (wrong format tho)
+        String filename = "outputAnger.txt";
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true));
+            writer.write("previous centroid -> ");
+            writer.write("centroid: (");
+            for(int i = 0; i < prevCentroids.size(); i++){
+                writer.write("\n");
+                for(int j = 0; j < prevCentroids.get(i).list.size(); j++){
+                    writer.write(prevCentroids.get(i).list.get(j) + ", ");
+                }
+            }
+            writer.write("\n");
+            
+            writer.write("current centroid -> ");
+            writer.write("centroid: (");
+            for(int i = 0; i < currentCentroids.size(); i++){
+                writer.write("\n");
+                for(int j = 0; j < currentCentroids.get(i).list.size(); j++){
+                    writer.write(currentCentroids.get(i).list.get(j) + ", ");
+                }
+            }
+            writer.write("\n");
+
+            writer.close();
+        }
+        catch(FileNotFoundException ex) {
+            System.out.println("Unable to open file '" + filename + "'");
+        }
+        catch(IOException ex) {
+            System.out.println("Error writing file '" + filename + "'");
+        }
+
+    }
 }

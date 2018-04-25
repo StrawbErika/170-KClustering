@@ -14,46 +14,51 @@ public class Graph extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
 
+        for(int j = 0; j < this.centroids.size(); j++){
+            this.centroids.get(j).print();
+        }
         super.paintComponent(g);
         Graphics2D gg = (Graphics2D) g;
 
-        gg.drawLine(15, getHeight() - 15, 15, 15);
-        gg.drawLine(15, getHeight() - 15, getWidth() - 15, getHeight() - 15);
+        gg.drawLine(5, getHeight() - 5, 5, 5);
+        gg.drawLine(5, getHeight() - 5, getWidth() - 5, getHeight() - 5);
 
         // create hatch marks for y axis.
         for (int i = 0; i < 10; i++) {
-            int x0 = 15;
-            int x1 = 12 + 15;
-            int y0 = getHeight() - (((i + 1) * (getHeight() - 15 * 2)) / 10 + 15);
+            int x0 = 5;
+            int x1 = 7 + 5;
+            int y0 = getHeight() - (((i + 1) * (getHeight() - 5 * 2)) / 10 + 5);
             int y1 = y0;
             gg.drawLine(x0, y0, x1, y1);
         }
 
         // and for x axis
-        for (int i = 0; i < centroids.get(0).vectors.size() - 1; i++) {
-            int x0 = (i + 1) * (getWidth() - 15 * 2) / (centroids.get(0).vectors.size() - 1) + 15;
-            int x1 = x0;
-            int y0 = getHeight() - 15;
-            int y1 = y0 - 12;
-            gg.drawLine(x0, y0, x1, y1);
+        if(centroids.size() > 0){
+            for (int i = 0; i < centroids.get(0).vectors.size() - 1; i++) {
+                int x0 = (i + 1) * (getWidth() - 5 * 2) / (centroids.get(0).vectors.size() - 1) + 5;
+                int x1 = x0;
+                int y0 = getHeight() - 5;
+                int y1 = y0 - 7;
+                gg.drawLine(x0, y0, x1, y1);
+            }
         }
 
         ArrayList<Color> colors = pick(this.k);
  
-    
-        // for(int i = 0; i < centroids.get(0).vectors.size(); i++){
-        //       if(Centroids.get(i).c == 0){
-        //         gg.setColor(Color.RED);
-        //       }
-        //       else{
-        //         gg.setColor(Color.GREEN);
-        //       }
-        //       Double c = Centroids.get(i).x*100;
-        //       Double d = Centroids.get(i).y*100;
-        //       int a = c.intValue();
-        //       int b = d.intValue();
-        //       gg.fillOval(a,b,20,20);
-        // }
+        System.out.println(centroids.size());
+        for(int j = 0; j < centroids.size(); j++){
+            System.out.println(centroids.get(j).vectors.size());
+            for(int i = 0; i < centroids.get(j).vectors.size(); i++){
+                Color point = colors.get(j);
+                gg.setColor(point);
+                Double c = centroids.get(j).vectors.get(i).list.get(0)*20;
+                Double d = centroids.get(j).vectors.get(i).list.get(1)*20;
+                int a = c.intValue();
+                int b = d.intValue();
+                System.out.println("HEY"+a+" " +d);
+                gg.fillOval(a,b,10,10);
+            }
+        }
 
     }
 

@@ -41,17 +41,9 @@ public class Kcluster {
 
             iterations.add(new ArrayList<Centroids>(prevCentroids));
 
-            // System.out.println(i);
-            // System.out.println("PREV ");
-            // for(int j=0; j < prevCentroids.size(); j++){
-            //     prevCentroids.get(j).print();
-            //     System.out.println("\n");
-            // }
-            // System.out.println("\n");
-
-            iterations.add(new ArrayList<Centroids>(currentCentroids));
+            // iterations.add(new ArrayList<Centroids>(currentCentroids));
             iterationsCurrent.add(new ArrayList<Centroids>(currentCentroids));
-            printThis(i);
+            // printThis(i);
 
             // System.out.println("CURRENT ");
             // for(int j=0; j < currentCentroids.size(); j++){
@@ -67,20 +59,18 @@ public class Kcluster {
             updateCentroids();
             i++;
         }
+        //     System.out.println(i);
+        //     System.out.println("PREV ");
+        //     for(int j=0; j < currentCentroids.size(); j++){
+        //         currentCentroids.get(j).print();
+        //         System.out.println("\n");
+        //     }
+        //     System.out.println("\n");
         saveFile(i);
     }
 
     public void printThis(int x){
-        System.out.println("\n" + x + "TH ITERATION \n");
-        
         for(int p = 0; p < iterationsCurrent.size(); p++){
-            // if(p%2 == 0){
-            //     System.out.print("PREV CENTROIDS \n");
-            // }
-            // else{
-            //     System.out.print("CURRENT CENTROIDS \n");
-            // }
-
             for(int r = 0; r < iterationsCurrent.get(p).size(); r++){
                 for(int q = 0; q < iterationsCurrent.get(p).get(r).list.size(); q++){
                     System.out.print(Double.toString(iterationsCurrent.get(p).get(r).list.get(q)) + " ");
@@ -147,21 +137,11 @@ public class Kcluster {
 
     public void updateCentroids(){
         for(int j = 0; j < currentCentroids.size(); j++){
-            currentCentroids.add(j, new Centroids(averageDistance(currentCentroids.get(j))));
-            System.out.println("HOI >:(" + j);
+            averageDistance(currentCentroids.get(j));
         }
 
         clearVectorList();
-    }
-
-
-    public ArrayList<Double> averageDistance(Centroids c){
-        ArrayList<Double> l = new ArrayList<Double>();
-        for(int index = 0; index < c.vectors.get(1).list.size(); index++){
-            Double x = averageColumn(c, index);
-            l.add(x);
-        }   
-        return l;
+        initializeDuplicate();
     }
 
     public Double averageColumn(Centroids c, int x){
@@ -174,6 +154,44 @@ public class Kcluster {
         d = d / c.vectors.size();
         return d;
     }
+
+    public void averageDistance(Centroids c){
+        ArrayList<Double> l = new ArrayList<Double>();
+        for(int index = 0; index < c.vectors.get(1).list.size(); index++){
+            Double x = averageColumn(c, index);
+            l.add(x);
+        }   
+        c.list = l;
+    }
+    // public void updateCentroids(){
+    //     for(int j = 0; j < currentCentroids.size(); j++){
+    //         currentCentroids.add(j, new Centroids(averageDistance(currentCentroids.get(j))));
+    //         // System.out.println("HOI >:(" + j);
+    //     }
+
+    //     clearVectorList();
+    // }
+
+
+    // public ArrayList<Double> averageDistance(Centroids c){
+    //     ArrayList<Double> l = new ArrayList<Double>();
+    //     for(int index = 0; index < c.vectors.get(1).list.size(); index++){
+    //         Double x = averageColumn(c, index);
+    //         l.add(x);
+    //     }   
+    //     return l;
+    // }
+
+    // public Double averageColumn(Centroids c, int x){
+    //     Double d = 0.0;
+    //     for(int j = 0; j < c.vectors.get(x).list.size(); j++){
+    //         for(int index = 0; index < c.vectors.size(); index++){ // c.v.l
+    //            d = c.vectors.get(j).list.get(x) + d;
+    //        }
+    //     }
+    //     d = d / c.vectors.size();
+    //     return d;
+    // }
 
     public void getKcluster(){
         Double distance = 0.0;
@@ -319,17 +337,19 @@ public class Kcluster {
         String filename = "output.txt";
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
-            for(int p = 0; p < iterations.size(); p++){
-                if(p%2 == 0){
-                    writer.write("PREV CENTROIDS \n");
-                }
-                else{
-                    writer.write("CURRENT CENTROIDS \n");
-                }
-
+            for(int p = 1; p < iterations.size(); p++){
+                writer.write(p + "\n");
                 for(int r = 0; r < iterations.get(p).size(); r++){
-                    for(int q = 0; q < iterations.get(p).get(r).list.size(); q++){
-                        writer.write(Double.toString(iterations.get(p).get(r).list.get(q)) + " ");
+                    Centroids n = iterations.get(p).get(r);
+                    for(int q = 0; q < n.list.size(); q++){
+                        writer.write(Double.toString(n.list.get(q)) + " ");
+                    }
+                    writer.write("\n");
+                    for(int q = 0; q < n.vectors.size(); q++){
+                        for(int s = 0; s < n.vectors.get(q).list.size(); s++){
+                            writer.write(Double.toString(n.vectors.get(q).list.get(s)) + " ");
+                        }
+                        writer.write(q+"\n");
                     }
                     writer.write("\n");
                 }
@@ -348,6 +368,7 @@ public class Kcluster {
         String filename = "outputAnger.txt";
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true));
+            writer.write(x + "\n");
             writer.write("previous centroid -> ");
             writer.write("centroid: (");
             for(int i = 0; i < prevCentroids.size(); i++){

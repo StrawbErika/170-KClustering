@@ -18,7 +18,7 @@ public class UI {
         JLabel stats02= new JLabel();
         JFrame frame = new JFrame("Ham & Spam");//creates a frame/window; javax.swing.JFrame
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setPreferredSize(new Dimension(1200, 700));//sets initial size resolution of the frame...; java.awt.Dimensio
+        frame.setPreferredSize(new Dimension(2000, 900));//sets initial size resolution of the frame...; java.awt.Dimensio
 
         Container con = frame.getContentPane();
         JPanel contentPanel= new JPanel();
@@ -33,24 +33,28 @@ public class UI {
         JButton information= new JButton("Select input text");
 
         Graph graph= new Graph();
-        graph.setPreferredSize(new Dimension(550,550));
+        graph.setPreferredSize(new Dimension(750,750));
         graph.setBackground(Color.WHITE);
 
         information.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                JFileChooser fileChooser = new JFileChooser();
-                int result = fileChooser.showOpenDialog(frame);
-                if (result == JFileChooser.APPROVE_OPTION) {
-                    File selectedFile = fileChooser.getSelectedFile();
-                    System.out.println("Selected file: " + selectedFile.getAbsolutePath());
-                    cluster.loadFile(selectedFile.getAbsolutePath());
+                // JFileChooser fileChooser = new JFileChooser();
+                // int result = fileChooser.showOpenDialog(frame);
+                // if (result == JFileChooser.APPROVE_OPTION) {
+                    // File selectedFile = fileChooser.getSelectedFile();
+                    // System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+                    // cluster.loadFile(selectedFile.getAbsolutePath());
+                    cluster.loadFile("input.txt");
+                    cluster.findFinalCentroids();
+
                     graph.k = cluster.k;
                     if(cluster.isTwo){
-                        for(int i = 0; i < cluster.currentCentroids.size(); i++){
-                                graph.centroids.add(cluster.currentCentroids.get(i));
+                        for(int i = 0; i < cluster.iterations.get(1).size(); i++){
+                            cluster.iterations.get(1).get(i).print();
+                            graph.centroids.add(cluster.iterations.get(1).get(i));
                         }
                         graph.repaint();
-                    }
+                    // }
                 }
                 frame.requestFocus();
                 }

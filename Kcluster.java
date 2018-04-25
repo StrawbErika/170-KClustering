@@ -35,6 +35,10 @@ public class Kcluster {
         int i = 0;
         boolean change = true;
         while(change){  
+            if(i == 1){
+                iterations.add(new ArrayList<Centroids>(prevCentroids));
+            }
+            saveThisFile(i);
             iterations.add(new ArrayList<Centroids>(prevCentroids));
             change = comparePrevCurrent(i);
             getAllDistance();
@@ -263,7 +267,9 @@ public class Kcluster {
                   in++;
                 }
             }
-            min = trainingData.size()/2; 
+            min = trainingData.size()/k; 
+            this.initializeDuplicate();
+            
             inData.close();
         } catch (Exception e) {//Catch exception if any
             System.err.println("Error: " + e.getMessage());
@@ -271,10 +277,10 @@ public class Kcluster {
     }
 
     public void saveFile(int x) { //writes file (wrong format tho)
-        String filename = "output.txt";
+        String filename = "outputAnger.txt";
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
-            for(int p = 1; p < iterations.size(); p++){
+            for(int p = 0; p < iterations.size(); p++){
                 writer.write(p + "\n");
                 for(int r = 0; r < iterations.get(p).size(); r++){
                     Centroids n = iterations.get(p).get(r);
@@ -300,5 +306,38 @@ public class Kcluster {
             System.out.println("Error writing file '" + filename + "'");
         }
     }
+    public void saveThisFile(int x) { //writes file (wrong format tho)
+        String filename = "output.txt";
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true));
+            writer.write("previous centroid -> ");
+            writer.write("centroid: (");
+            for(int i = 0; i < prevCentroids.size(); i++){
+                writer.write("\n");
+                for(int j = 0; j < prevCentroids.get(i).list.size(); j++){
+                    writer.write(prevCentroids.get(i).list.get(j) + ", ");
+                }
+            }
+            writer.write("\n");
+            
+            writer.write("current centroid -> ");
+            writer.write("centroid: (");
+            for(int i = 0; i < currentCentroids.size(); i++){
+                writer.write("\n");
+                for(int j = 0; j < currentCentroids.get(i).list.size(); j++){
+                    writer.write(currentCentroids.get(i).list.get(j) + ", ");
+                }
+            }
+            writer.write("\n");
 
+            writer.close();
+        }
+        catch(FileNotFoundException ex) {
+            System.out.println("Unable to open file '" + filename + "'");
+        }
+        catch(IOException ex) {
+            System.out.println("Error writing file '" + filename + "'");
+        }
+
+    }
 }

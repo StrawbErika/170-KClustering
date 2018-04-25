@@ -7,15 +7,20 @@ import java.lang.*;
 public class Graph extends JPanel {
     public ArrayList<Centroids> centroids;
     public int k;
+    public int turn;
     public Graph(){
+        turn = 0;
         k = 0;
         centroids = new ArrayList<Centroids>();
     }
     @Override
     public void paintComponent(Graphics g) {
+        this.removeAll();
 
         super.paintComponent(g);
         Graphics2D gg = (Graphics2D) g;
+        
+        super.paintComponent(gg);
 
         gg.drawLine(5, getHeight() - 5, 5, 5);
         gg.drawLine(5, getHeight() - 5, getWidth() - 5, getHeight() - 5);
@@ -44,20 +49,37 @@ public class Graph extends JPanel {
  
         for(int j = 0; j < centroids.size(); j++){
             for(int i = 0; i < centroids.get(j).vectors.size(); i++){
-                Color point = colors.get(j);
-                gg.setColor(point);
-                Double c = centroids.get(j).vectors.get(i).list.get(0)*10;
-                Double d = centroids.get(j).vectors.get(i).list.get(1)*10;
-                int a = c.intValue();
-                int b = d.intValue();
+                if(turn == 1){
+                    gg.setColor(Color.BLACK);
+                    Double c = centroids.get(j).vectors.get(i).list.get(0)*10;
+                    Double d = centroids.get(j).vectors.get(i).list.get(1)*10;
+                    int a = c.intValue();
+                    int b = d.intValue();
 
-                Double c2 = centroids.get(j).list.get(0)*10;
-                Double d2 = centroids.get(j).list.get(1)*10;
-                int a2 = c2.intValue();
-                int b2 = d2.intValue();
-                
-                gg.fillOval(a,b,10,10);
-                gg.fillOval(a2,b2,10,10);
+                    Double c2 = centroids.get(j).list.get(0)*10;
+                    Double d2 = centroids.get(j).list.get(1)*10;
+                    int a2 = c2.intValue();
+                    int b2 = d2.intValue();
+                    
+                    gg.fillOval(a,b,10,10);
+                    gg.fillRect(a2,b2,10,10);
+                }
+                else{
+                    Color point = colors.get(j);
+                    gg.setColor(point);
+                    Double c = centroids.get(j).vectors.get(i).list.get(0)*10;
+                    Double d = centroids.get(j).vectors.get(i).list.get(1)*10;
+                    int a = c.intValue();
+                    int b = d.intValue();
+
+                    Double c2 = centroids.get(j).list.get(0)*10;
+                    Double d2 = centroids.get(j).list.get(1)*10;
+                    int a2 = c2.intValue();
+                    int b2 = d2.intValue();
+                    
+                    gg.fillOval(a,b,10,10);
+                    gg.fillRect(a2,b2,10,10);
+                }
             }
         }
 

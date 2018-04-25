@@ -57,7 +57,7 @@ public class UI {
         pointClass.setPreferredSize(new Dimension(800,50));
         pointClass.setBackground(Color.GRAY);
         pointClass.setLayout(new GridLayout(1,2));
-        JLabel point = new JLabel("Point");
+        JLabel point = new JLabel("Class");
         JLabel className = new JLabel("Centroid");
         pointClass.add(point);
         pointClass.add(className);
@@ -71,6 +71,13 @@ public class UI {
         pointClassPanel.add(pointPanel);
         pointClassPanel.add(classPanel);
 
+        JPanel buttonsPanel= new JPanel();
+        buttonsPanel.setPreferredSize(new Dimension(800,100));
+
+        JButton prev= new JButton("Previous");
+        JButton next= new JButton("Next");
+        buttonsPanel.add(prev);
+        buttonsPanel.add(next);
 
         information.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
@@ -84,6 +91,7 @@ public class UI {
                     cluster.findFinalCentroids();
 
                     graph.k = cluster.k;
+                    graph.turn = turn;
                     if(cluster.isTwo){
                         for(int i = 0; i < cluster.iterations.get(turn).size(); i++){
                             cluster.iterations.get(turn).get(i).print();
@@ -105,8 +113,8 @@ public class UI {
                                 String One2 = Double.toString(thisCList.get(1));
                                 String centroidPoint = Zero2 + " , "+One2 +"\n" ;
 
-                                pointPanel.append(vectorPoint);
-                                classPanel.append(centroidPoint);
+                                pointPanel.append(centroidPoint);
+                                classPanel.append(vectorPoint);
                             }
                         }
 
@@ -116,24 +124,90 @@ public class UI {
                 }
         });
 
+        prev.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                if((turn-1)!= 0){
+                    pointPanel.setText("");
+                    classPanel.setText("");
+                    graph.removeAll();
+                    turn --;
+                    if(cluster.isTwo){
+                        for(int i = 0; i < cluster.iterations.get(turn).size(); i++){
+                            cluster.iterations.get(turn).get(i).print();
+                            graph.centroids.add(cluster.iterations.get(turn).get(i));
+                        }
+                        graph.repaint();
 
-    //   classify.addActionListener(new ActionListener(){
-    //     public void actionPerformed(ActionEvent e){
-    //       String data01= wordPanel.getText();
-    //       pointPanel.setText(data01);
-    //       nearest.getX(data01);
-    //       nearest.getAllDistance();
-    //       nearest.getKNearest();
-    //       nearest.getC();
-    //       classPanel.setText(classData);
-    //       nearest.saveFile();
-          
-    //     }
-    //   });
+                        for(int i = 0; i < cluster.iterations.get(turn).size(); i++){
+                            Centroids thisCentroid = cluster.iterations.get(turn).get(i);
+                            for(int k = 0; k < thisCentroid.vectors.size(); k++){
+                                ArrayList<Double> thisVList = thisCentroid.vectors.get(k).list;
+                                ArrayList<Double> thisCList = thisCentroid.list;
+
+                                String Zero = Double.toString(thisVList.get(0));
+                                String One = Double.toString(thisVList.get(1));
+                                String vectorPoint = Zero + " , "+One +"\n" ;
+
+                                String Zero2 = Double.toString(thisCList.get(0));
+                                String One2 = Double.toString(thisCList.get(1));
+                                String centroidPoint = Zero2 + " , "+One2 +"\n" ;
+
+                                pointPanel.append(centroidPoint);
+                                classPanel.append(vectorPoint);
+                            }
+                        }
+
+                    }
+                }
+                frame.requestFocus();
+                }
+        });
+
+         next.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                if((turn+1)!=cluster.iterations.size()){
+                    graph.repaint();
+                    pointPanel.setText("");
+                    classPanel.setText("");
+                    turn ++;
+                    if(cluster.isTwo){
+                        for(int i = 0; i < cluster.iterations.get(turn).size(); i++){
+                            cluster.iterations.get(turn).get(i).print();
+                            graph.centroids.add(cluster.iterations.get(turn).get(i));
+                        }
+                        graph.repaint();
+
+                        for(int i = 0; i < cluster.iterations.get(turn).size(); i++){
+                            Centroids thisCentroid = cluster.iterations.get(turn).get(i);
+                            for(int k = 0; k < thisCentroid.vectors.size(); k++){
+                                ArrayList<Double> thisVList = thisCentroid.vectors.get(k).list;
+                                ArrayList<Double> thisCList = thisCentroid.list;
+
+                                String Zero = Double.toString(thisVList.get(0));
+                                String One = Double.toString(thisVList.get(1));
+                                String vectorPoint = Zero + " , "+One +"\n" ;
+
+                                String Zero2 = Double.toString(thisCList.get(0));
+                                String One2 = Double.toString(thisCList.get(1));
+                                String centroidPoint = Zero2 + " , "+One2 +"\n" ;
+
+                                pointPanel.append(centroidPoint);
+                                classPanel.append(vectorPoint);
+                            }
+                        }
+
+                    }
+                }
+                frame.requestFocus();
+                }
+        });
+
+
 
         hamPanel.add(filler);
         hamPanel.add(pointClass);
         hamPanel.add(pointClassPanel);
+        hamPanel.add(buttonsPanel);
 
 //--
 

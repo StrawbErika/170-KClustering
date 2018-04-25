@@ -89,7 +89,6 @@ public class UI {
                     // cluster.loadFile(selectedFile.getAbsolutePath());
                     cluster.loadFile("input.txt");
                     cluster.findFinalCentroids();
-
                     graph.k = cluster.k;
                     graph.turn = turn;
                     if(cluster.isTwo){
@@ -127,10 +126,12 @@ public class UI {
         prev.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 if((turn-1)!= 0){
+                    graph.repaint();
                     pointPanel.setText("");
                     classPanel.setText("");
                     graph.removeAll();
-                    turn --;
+                    turn--;
+                    graph.turn = turn;
                     if(cluster.isTwo){
                         for(int i = 0; i < cluster.iterations.get(turn).size(); i++){
                             cluster.iterations.get(turn).get(i).print();
@@ -169,7 +170,9 @@ public class UI {
                     graph.repaint();
                     pointPanel.setText("");
                     classPanel.setText("");
+                    graph.removeAll();
                     turn ++;
+                    graph.turn = turn;
                     if(cluster.isTwo){
                         for(int i = 0; i < cluster.iterations.get(turn).size(); i++){
                             cluster.iterations.get(turn).get(i).print();

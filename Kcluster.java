@@ -310,23 +310,15 @@ public class Kcluster {
         String filename = "output.txt";
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true));
-            writer.write("previous centroid -> ");
-            writer.write("centroid: (");
-            for(int i = 0; i < prevCentroids.size(); i++){
-                writer.write("\n");
-                for(int j = 0; j < prevCentroids.get(i).list.size(); j++){
-                    writer.write(prevCentroids.get(i).list.get(j) + ", ");
-                }
-            }
-            writer.write("\n");
-            
-            writer.write("current centroid -> ");
-            writer.write("centroid: (");
+            writer.write("Iteration "+ x +": \n");
             for(int i = 0; i < currentCentroids.size(); i++){
-                writer.write("\n");
+                writer.write("Centroid ");
+                writer.write( i+ " : (");
                 for(int j = 0; j < currentCentroids.get(i).list.size(); j++){
                     writer.write(currentCentroids.get(i).list.get(j) + ", ");
                 }
+                writer.write(") ");
+                writer.write("\n");
             }
             writer.write("\n");
 

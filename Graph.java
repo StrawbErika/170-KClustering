@@ -14,9 +14,6 @@ public class Graph extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
 
-        for(int j = 0; j < this.centroids.size(); j++){
-            this.centroids.get(j).print();
-        }
         super.paintComponent(g);
         Graphics2D gg = (Graphics2D) g;
 
@@ -45,18 +42,22 @@ public class Graph extends JPanel {
 
         ArrayList<Color> colors = pick(this.k);
  
-        System.out.println(centroids.size());
         for(int j = 0; j < centroids.size(); j++){
-            System.out.println(centroids.get(j).vectors.size());
             for(int i = 0; i < centroids.get(j).vectors.size(); i++){
                 Color point = colors.get(j);
                 gg.setColor(point);
-                Double c = centroids.get(j).vectors.get(i).list.get(0)*20;
-                Double d = centroids.get(j).vectors.get(i).list.get(1)*20;
+                Double c = centroids.get(j).vectors.get(i).list.get(0)*10;
+                Double d = centroids.get(j).vectors.get(i).list.get(1)*10;
                 int a = c.intValue();
                 int b = d.intValue();
-                System.out.println("HEY"+a+" " +d);
+
+                Double c2 = centroids.get(j).list.get(0)*10;
+                Double d2 = centroids.get(j).list.get(1)*10;
+                int a2 = c2.intValue();
+                int b2 = d2.intValue();
+                
                 gg.fillOval(a,b,10,10);
+                gg.fillOval(a2,b2,10,10);
             }
         }
 

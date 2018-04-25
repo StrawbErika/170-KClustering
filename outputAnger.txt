@@ -479,3 +479,196 @@ previous centroid -> centroid: (
 current centroid -> centroid: (
 7.0, 46.0, 
 6.0, 14.0, 
+0
+previous centroid -> centroid: (
+999999.0, 999999.0, 
+999999.0, 999999.0, 
+current centroid -> centroid: (
+49.68960262007083, 37.42732899198855, 
+44.07835383480756, 22.310209534269806, 
+1
+previous centroid -> centroid: (
+49.68960262007083, 37.42732899198855, 
+44.07835383480756, 22.310209534269806, 
+current centroid -> centroid: (
+98.0, 23.0, 
+7.0, 34.0, 
+2
+previous centroid -> centroid: (
+98.0, 23.0, 
+7.0, 34.0, 
+current centroid -> centroid: (
+98.0, 23.0, 
+5.0, 37.0, 
+3
+previous centroid -> centroid: (
+98.0, 23.0, 
+5.0, 37.0, 
+current centroid -> centroid: (
+98.0, 23.0, 
+5.0, 37.0, 
+0
+previous centroid -> centroid: (
+98.0, 23.0, 
+5.0, 37.0, 
+999999.0, 999999.0, 
+999999.0, 999999.0, 
+current centroid -> centroid: (
+98.0, 23.0, 
+5.0, 37.0, 
+37.36868551541617, 0.41808282177249945, 
+4.412224157775138, 0.9072048610863855, 
+0
+previous centroid -> centroid: (
+999999.0, 999999.0, 
+999999.0, 999999.0, 
+current centroid -> centroid: (
+40.74678257762456, 11.269152203701712, 
+7.95002329352803, 1.5102798728828235, 
+1
+previous centroid -> centroid: (
+40.74678257762456, 11.269152203701712, 
+7.95002329352803, 1.5102798728828235, 
+current centroid -> centroid: (
+98.0, 23.0, 
+4.0, 17.0, 
+2
+previous centroid -> centroid: (
+98.0, 23.0, 
+4.0, 17.0, 
+current centroid -> centroid: (
+98.0, 23.0, 
+6.0, 25.0, 
+3
+previous centroid -> centroid: (
+98.0, 23.0, 
+6.0, 25.0, 
+current centroid -> centroid: (
+98.0, 23.0, 
+5.0, 37.0, 
+4
+previous centroid -> centroid: (
+98.0, 23.0, 
+5.0, 37.0, 
+current centroid -> centroid: (
+98.0, 23.0, 
+5.0, 37.0, 
+0
+previous centroid -> centroid: (
+999999.0, 999999.0, 
+999999.0, 999999.0, 
+current centroid -> centroid: (
+35.03288897350088, 4.855141364847104, 
+3.2377198861628202, 29.90264158002405, 
+1
+previous centroid -> centroid: (
+35.03288897350088, 4.855141364847104, 
+3.2377198861628202, 29.90264158002405, 
+current centroid -> centroid: (
+98.0, 23.0, 
+7.0, 46.0, 
+2
+previous centroid -> centroid: (
+98.0, 23.0, 
+7.0, 46.0, 
+current centroid -> centroid: (
+98.0, 23.0, 
+5.0, 37.0, 
+3
+previous centroid -> centroid: (
+98.0, 23.0, 
+5.0, 37.0, 
+current centroid -> centroid: (
+98.0, 23.0, 
+5.0, 37.0, 
+0
+previous centroid -> centroid: (
+999999.0, 999999.0, 
+999999.0, 999999.0, 
+current centroid -> centroid: (
+44.42012206198704, 4.18377975995535, 
+17.881832951946652, 31.020298596706507, 
+1
+previous centroid -> centroid: (
+44.42012206198704, 4.18377975995535, 
+17.881832951946652, 31.020298596706507, 
+current centroid -> centroid: (
+98.0, 23.0, 
+7.0, 46.0, 
+2
+previous centroid -> centroid: (
+98.0, 23.0, 
+7.0, 46.0, 
+current centroid -> centroid: (
+98.0, 23.0, 
+5.0, 37.0, 
+3
+previous centroid -> centroid: (
+98.0, 23.0, 
+5.0, 37.0, 
+current centroid -> centroid: (
+98.0, 23.0, 
+5.0, 37.0, 
+0
+previous centroid -> centroid: (
+999999.0, 999999.0, 
+999999.0, 999999.0, 
+current centroid -> centroid: (
+44.37082879424665, 5.7920137273181185, 
+29.261261577159626, 7.555999899300336, 
+1
+previous centroid -> centroid: (
+44.37082879424665, 5.7920137273181185, 
+29.261261577159626, 7.555999899300336, 
+current centroid -> centroid: (
+98.0, 23.0, 
+4.0, 17.0, 
+2
+previous centroid -> centroid: (
+98.0, 23.0, 
+4.0, 17.0, 
+current centroid -> centroid: (
+98.0, 23.0, 
+6.0, 25.0, 
+3
+previous centroid -> centroid: (
+98.0, 23.0, 
+6.0, 25.0, 
+current centroid -> centroid: (
+98.0, 23.0, 
+5.0, 37.0, 
+4
+previous centroid -> centroid: (
+98.0, 23.0, 
+5.0, 37.0, 
+current centroid -> centroid: (
+98.0, 23.0, 
+5.0, 37.0, 
+0
+previous centroid -> centroid: (
+999999.0, 999999.0, 
+999999.0, 999999.0, 
+current centroid -> centroid: (
+27.821917131662055, 29.47578715857033, 
+19.122824628554373, 4.511831807681813, 
+1
+previous centroid -> centroid: (
+27.821917131662055, 29.47578715857033, 
+19.122824628554373, 4.511831807681813, 
+current centroid -> centroid: (
+12.0, 44.0, 
+6.0, 14.0, 
+2
+previous centroid -> centroid: (
+12.0, 44.0, 
+6.0, 14.0, 
+current centroid -> centroid: (
+7.0, 46.0, 
+6.0, 14.0, 
+3
+previous centroid -> centroid: (
+7.0, 46.0, 
+6.0, 14.0, 
+current centroid -> centroid: (
+7.0, 46.0, 
+6.0, 14.0, 

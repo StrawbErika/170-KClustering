@@ -277,7 +277,7 @@ public class Kcluster {
     }
 
     public void saveFile(int x) { //writes file (wrong format tho)
-        String filename = "outputAnger.txt";
+        String filename = "outputAllAtOnce.txt";
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
             for(int p = 0; p < iterations.size(); p++){
@@ -306,6 +306,7 @@ public class Kcluster {
             System.out.println("Error writing file '" + filename + "'");
         }
     }
+
     public void saveThisFile(int x) { //writes file (wrong format tho)
         String filename = "output.txt";
         try {

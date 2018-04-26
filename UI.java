@@ -81,13 +81,11 @@ public class UI {
 
         information.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                // JFileChooser fileChooser = new JFileChooser();
-                // int result = fileChooser.showOpenDialog(frame);
-                // if (result == JFileChooser.APPROVE_OPTION) {
-                    // File selectedFile = fileChooser.getSelectedFile();
-                    // System.out.println("Selected file: " + selectedFile.getAbsolutePath());
-                    // cluster.loadFile(selectedFile.getAbsolutePath());
-                    cluster.loadFile("input.txt");
+                JFileChooser fileChooser = new JFileChooser();
+                int result = fileChooser.showOpenDialog(frame);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    File selectedFile = fileChooser.getSelectedFile();
+                    cluster.loadFile(selectedFile.getAbsolutePath());
                     cluster.findFinalCentroids();
                     graph.k = cluster.k;
                     graph.turn = turn;
@@ -115,9 +113,8 @@ public class UI {
                                 classPanel.append(vectorPoint);
                             }
                         }
-
                     }
-
+                }
                 frame.requestFocus();
                 }
         });

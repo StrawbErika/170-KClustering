@@ -23,3 +23,157 @@ Centroid 1 : (7.0, 46.0, )
 Centroid 2 : (10.0, 35.0, ) 
 Centroid 3 : (6.0, 14.0, ) 
 
+Iteration 0: 
+Centroid 0 : (35.75198833359191, 38.514801114167305, ) 
+Centroid 1 : (46.323443091176586, 18.940665008101853, ) 
+Centroid 2 : (46.39358834379094, 48.1298526501556, ) 
+Centroid 3 : (28.136968434500968, 23.695955089917653, ) 
+
+Iteration 1: 
+Centroid 0 : (62.0, 42.0, ) 
+Centroid 1 : (48.0, 25.0, ) 
+Centroid 2 : (5.0, 37.0, ) 
+Centroid 3 : (6.0, 14.0, ) 
+
+Iteration 2: 
+Centroid 0 : (98.0, 23.0, ) 
+Centroid 1 : (12.0, 44.0, ) 
+Centroid 2 : (5.0, 37.0, ) 
+Centroid 3 : (6.0, 14.0, ) 
+
+Iteration 3: 
+Centroid 0 : (98.0, 23.0, ) 
+Centroid 1 : (7.0, 46.0, ) 
+Centroid 2 : (10.0, 35.0, ) 
+Centroid 3 : (6.0, 14.0, ) 
+
+Iteration 4: 
+Centroid 0 : (98.0, 23.0, ) 
+Centroid 1 : (7.0, 46.0, ) 
+Centroid 2 : (10.0, 35.0, ) 
+Centroid 3 : (6.0, 14.0, ) 
+
+Iteration 0: 
+Centroid 0 : (15.748333615959611, 22.27396464573266, ) 
+Centroid 1 : (4.424783095471709, 39.902418330545146, ) 
+Centroid 2 : (21.901876284920732, 20.71185402368969, ) 
+Centroid 3 : (6.731863788772347, 7.790755364732805, ) 
+
+Iteration 1: 
+Centroid 0 : (12.0, 44.0, ) 
+Centroid 1 : (5.0, 37.0, ) 
+Centroid 2 : (6.0, 14.0, ) 
+Centroid 3 : (98.0, 23.0, ) 
+
+Iteration 2: 
+Centroid 0 : (7.0, 46.0, ) 
+Centroid 1 : (10.0, 35.0, ) 
+Centroid 2 : (6.0, 14.0, ) 
+Centroid 3 : (98.0, 23.0, ) 
+
+Iteration 3: 
+Centroid 0 : (7.0, 46.0, ) 
+Centroid 1 : (10.0, 35.0, ) 
+Centroid 2 : (6.0, 14.0, ) 
+Centroid 3 : (98.0, 23.0, ) 
+
+Iteration 0: 
+Centroid 0 : (7.0, 46.0, ) 
+Centroid 1 : (10.0, 35.0, ) 
+Centroid 2 : (6.0, 14.0, ) 
+Centroid 3 : (98.0, 23.0, ) 
+Centroid 4 : (3.1671599926678637, 17.966734357680338, ) 
+Centroid 5 : (1.192841493122259, 18.931206455968137, ) 
+Centroid 6 : (27.971163234493233, 23.851813589559164, ) 
+Centroid 7 : (31.56203745310638, 34.44159562535647, ) 
+
+Iteration 0: 
+Centroid 0 : (26.764829303441854, 20.01688703482138, ) 
+Centroid 1 : (38.87791549892376, 34.39560666246698, ) 
+Centroid 2 : (42.43384619478762, 35.14173068728507, ) 
+Centroid 3 : (38.498598474893704, 39.0214244944186, ) 
+
+Iteration 1: 
+Centroid 0 : (12.0, 44.0, ) 
+Centroid 1 : (98.0, 23.0, ) 
+Centroid 2 : (7.0, 34.0, ) 
+Centroid 3 : (4.0, 17.0, ) 
+
+Iteration 2: 
+Centroid 0 : (7.0, 46.0, ) 
+Centroid 1 : (98.0, 23.0, ) 
+Centroid 2 : (10.0, 35.0, ) 
+Centroid 3 : (6.0, 14.0, ) 
+
+Iteration 3: 
+Centroid 0 : (7.0, 46.0, ) 
+Centroid 1 : (98.0, 23.0, ) 
+Centroid 2 : (10.0, 35.0, ) 
+Centroid 3 : (6.0, 14.0, ) 
+
+Iteration 0: 
+Centroid 0 : (11.708682660251466, 0.6291781931736677, ) 
+Centroid 1 : (7.954163561159597, 39.42882300420954, ) 
+Centroid 2 : (13.726635092937933, 45.7196806866875, ) 
+Centroid 3 : (34.844870251422705, 21.02184942123054, ) 
+
+Iteration 1: 
+Centroid 0 : (6.0, 14.0, ) 
+Centroid 1 : (7.0, 46.0, ) 
+Centroid 2 : (10.0, 35.0, ) 
+Centroid 3 : (98.0, 23.0, ) 
+
+Iteration 2: 
+Centroid 0 : (6.0, 25.0, ) 
+Centroid 1 : (7.0, 46.0, ) 
+Centroid 2 : (10.0, 24.0, ) 
+Centroid 3 : (98.0, 23.0, ) 
+
+Iteration 0: 
+Centroid 0 : (26.69748525409162, 11.777820652405232, ) 
+Centroid 1 : (2.7321992763216922, 7.09327340656079, ) 
+Centroid 2 : (4.498755459568886, 45.081141455732926, ) 
+Centroid 3 : (44.18525323591403, 21.41014049108238, ) 
+
+Iteration 1: 
+Centroid 0 : (52.0, 23.0, ) 
+Centroid 1 : (6.0, 14.0, ) 
+Centroid 2 : (7.0, 46.0, ) 
+Centroid 3 : (56.0, 35.0, ) 
+
+Iteration 2: 
+Centroid 0 : (98.0, 23.0, ) 
+Centroid 1 : (6.0, 25.0, ) 
+Centroid 2 : (7.0, 46.0, ) 
+Centroid 3 : (10.0, 24.0, ) 
+
+Iteration 3: 
+Centroid 0 : (98.0, 23.0, ) 
+Centroid 1 : (7.0, 46.0, ) 
+Centroid 2 : (10.0, 35.0, ) 
+Centroid 3 : (6.0, 14.0, ) 
+
+Iteration 0: 
+Centroid 0 : (42.569091046491664, 31.353030879803956, ) 
+Centroid 1 : (33.95600763416917, 46.16625502245984, ) 
+Centroid 2 : (0.4571132873785203, 43.27472680409947, ) 
+Centroid 3 : (35.287492505443986, 41.54686609775093, ) 
+
+Iteration 1: 
+Centroid 0 : (98.0, 23.0, ) 
+Centroid 1 : (12.0, 44.0, ) 
+Centroid 2 : (5.0, 37.0, ) 
+Centroid 3 : (6.0, 14.0, ) 
+
+Iteration 2: 
+Centroid 0 : (98.0, 23.0, ) 
+Centroid 1 : (7.0, 46.0, ) 
+Centroid 2 : (10.0, 35.0, ) 
+Centroid 3 : (6.0, 14.0, ) 
+
+Iteration 3: 
+Centroid 0 : (98.0, 23.0, ) 
+Centroid 1 : (7.0, 46.0, ) 
+Centroid 2 : (10.0, 35.0, ) 
+Centroid 3 : (6.0, 14.0, ) 
+

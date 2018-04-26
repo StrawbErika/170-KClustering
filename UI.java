@@ -93,7 +93,6 @@ public class UI {
                     graph.turn = turn;
                     if(cluster.isTwo){
                         for(int i = 0; i < cluster.iterations.get(turn).size(); i++){
-                            cluster.iterations.get(turn).get(i).print();
                             graph.centroids.add(cluster.iterations.get(turn).get(i));
                         }
                         graph.repaint();
@@ -126,15 +125,13 @@ public class UI {
         prev.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 if((turn-1)!= 0){
-                    graph.repaint();
+                    graph.centroids.clear();
                     pointPanel.setText("");
                     classPanel.setText("");
-                    graph.removeAll();
                     turn--;
                     graph.turn = turn;
                     if(cluster.isTwo){
                         for(int i = 0; i < cluster.iterations.get(turn).size(); i++){
-                            cluster.iterations.get(turn).get(i).print();
                             graph.centroids.add(cluster.iterations.get(turn).get(i));
                         }
                         graph.repaint();
@@ -167,15 +164,13 @@ public class UI {
          next.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 if((turn+1)!=cluster.iterations.size()){
-                    graph.repaint();
+                    graph.centroids.clear();
                     pointPanel.setText("");
                     classPanel.setText("");
-                    graph.removeAll();
                     turn ++;
                     graph.turn = turn;
                     if(cluster.isTwo){
                         for(int i = 0; i < cluster.iterations.get(turn).size(); i++){
-                            cluster.iterations.get(turn).get(i).print();
                             graph.centroids.add(cluster.iterations.get(turn).get(i));
                         }
                         graph.repaint();

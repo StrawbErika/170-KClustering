@@ -45,6 +45,8 @@ public class Graph extends JPanel {
         }
 
         ArrayList<Color> colors = pick(this.k);
+
+        // clearRect();
  
         for(int j = 0; j < centroids.size(); j++){
             for(int i = 0; i < centroids.get(j).vectors.size(); i++){
@@ -64,19 +66,19 @@ public class Graph extends JPanel {
                     gg.fillRect(a2,b2,10,10);
                 }
                 else{
-                    // Color point = colors.get(j);
-                    // gg.setColor(point);
-                    // Double c = centroids.get(j).vectors.get(i).list.get(0)*10;
-                    // Double d = centroids.get(j).vectors.get(i).list.get(1)*10;
-                    // int a = c.intValue();
-                    // int b = d.intValue();
+                    Color point = colors.get(j);
+                    gg.setColor(point);
+                    Double c = centroids.get(j).vectors.get(i).list.get(0)*10;
+                    Double d = centroids.get(j).vectors.get(i).list.get(1)*10;
+                    int a = c.intValue();
+                    int b = d.intValue();
 
                     Double c2 = centroids.get(j).list.get(0)*10;
                     Double d2 = centroids.get(j).list.get(1)*10;
                     int a2 = c2.intValue();
                     int b2 = d2.intValue();
                     
-                    // gg.fillOval(a,b,10,10);
+                    gg.fillOval(a,b,10,10);
                     gg.fillRect(a2,b2,10,10);
                 }
             }
